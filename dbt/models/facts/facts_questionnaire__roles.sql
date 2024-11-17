@@ -45,6 +45,11 @@ with
             )
     ),
 
+    correct_answers as (
+        select response_role__question, response_role__correct_answer
+        from {{ ref("stg_google_sheets_answers_roles") }}
+    ),
+
     check_answers as (
         select
             submitted_answers.respondent_email,
