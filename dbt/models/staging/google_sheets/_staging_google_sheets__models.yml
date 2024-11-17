@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: stg_google_sheets_answers_roles
+  - name: stg_google_sheets_questionnaire_descriptors
+  - name: stg_google_sheets_questionnaire_roles
