@@ -2,6 +2,7 @@ with
     source as (
         select
             respondent_email,
+            respondent_class,
 
             respondent_work_experience,
             respondent_bachelors,
