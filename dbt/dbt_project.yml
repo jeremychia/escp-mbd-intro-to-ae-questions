@@ -32,6 +32,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   escp_mbd_intro_to_ae:
+    +persist_docs:
+      relation: true
+      columns: true
     # Config indicated by + and applies to all files under models/example/
     staging:
       +schema: staging
