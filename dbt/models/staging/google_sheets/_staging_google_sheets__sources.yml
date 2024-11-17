@@ -1,0 +1,101 @@
+version: 2
+sources:
+  - name: escpmbd_google_sheets
+    description: >
+      This source contains data stored in Google Sheets that are manually maintained.
+    tables:
+      - name: questionnaire_roles
+        description: >
+          2024.11.26 - What do you think a data professional does? (Responses)
+        external:
+          options:
+            format: GOOGLE_SHEETS
+            uris: ['https://docs.google.com/spreadsheets/d/1ZlmflfFef3-OJCrOrdKI9p-UrciVQQp9gmgmnXVlHMI/']
+            sheet_range: Form responses 1
+            skip_leading_rows: 1
+        columns:
+          - name: timestamp
+            data_type: STRING
+          - name: email_address
+            data_type: STRING
+          - name: score
+            data_type: STRING
+          - name: select_your_class
+            data_type: STRING
+          - name: how_many_years_of_work_experience_do_you_have_before_doing_the_masters
+            data_type: STRING
+          - name: what_is_your_bachelors_field_of_studies
+            data_type: STRING
+          - name: have_you_heard_of_analytics_engineering
+            data_type: STRING
+          - name: do_you_know_how_to_programme_in_sql
+            data_type: STRING
+          - name: have_you_heard_of_dbt_sqlmesh_or_sdf_or_other_tools
+            data_type: STRING
+          - name: how_tired_are_you_when_coming_to_the_class_today
+            data_type: STRING
+          - name: build_custom_data_ingestion_integrations
+            data_type: STRING
+          - name: manage_overall_pipeline_orchestration
+            data_type: STRING
+          - name: develop_and_deploy_machine_learning_endpoints
+            data_type: STRING
+          - name: build_and_maintain_the_data_platform
+            data_type: STRING
+          - name: data_warehouse_performance_optimisation
+            data_type: STRING
+          - name: provide_clean_transformed_data_ready_for_analysis
+            data_type: STRING
+          - name: apply_software_engineering_practices_to_analytics_code
+            data_type: STRING
+          - name: maintain_data_documentation_and_definitions
+            data_type: STRING
+          - name: deep_insights_work
+            data_type: STRING
+          - name: work_with_business_users_to_understand_data_requirements
+            data_type: STRING
+          - name: build_critical_dashboards
+            data_type: STRING
+          - name: forecasting
+            data_type: STRING
+      - name: answers_roles
+        description: >
+          2024.11.26 - What do you think a data professional does? (Responses)
+        external:
+          options:
+            format: GOOGLE_SHEETS
+            uris: ['https://docs.google.com/spreadsheets/d/1ZlmflfFef3-OJCrOrdKI9p-UrciVQQp9gmgmnXVlHMI/']
+            sheet_range: answers
+            skip_leading_rows: 1
+        columns:
+          - name: questions
+            data_type: STRING
+          - name: answers
+            data_type: STRING
+
+      - name: questionnaire_descriptors
+        description: >
+          2024.11.26 - Write what you think are good descriptions for these fields (Responses)
+        external:
+          options:
+            format: GOOGLE_SHEETS
+            uris: ['https://docs.google.com/spreadsheets/d/1wdHy4rvDms7tuHbDHywJDLd305QYzQ8BXGRS5B7HMKA/']
+            sheet_range: Form responses 1
+            skip_leading_rows: 1
+        columns:
+          - name: timestamp
+            data_type: STRING
+          - name: email_address
+            data_type: STRING
+          - name: student_id
+            data_type: STRING
+          - name: student_name
+            data_type: STRING
+          - name: attendance
+            data_type: STRING
+          - name: avg_result
+            data_type: STRING
+          - name: applied_on
+            data_type: STRING
+          - name: admitted_on
+            data_type: STRING
