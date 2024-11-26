@@ -3,6 +3,8 @@ with
         select
             respondent_email,
             respondent_class,
+            
+            respondent_energy_level,
 
             respondent_work_experience,
             respondent_bachelors,
@@ -18,6 +20,8 @@ with
         select
             respondent_email,
             respondent_class,
+
+            respondent_energy_level as energy_level,
 
             respondent_work_experience as work_experience,
             respondent_bachelors as bachelors,
