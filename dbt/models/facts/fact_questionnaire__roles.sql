@@ -4,7 +4,7 @@ with
             respondent_email,
             submitted_at,
 
-            response_role__build_custom_data_ingestion_integrations,  -- 1
+            response_role__build_custom_data_ingestion_integrations,  -- 1 2 
             response_role__manage_overall_pipeline_orchestration,  -- 2
             response_role__develop_and_deploy_machine_learning_endpoints,  -- 3
             response_role__build_and_maintain_the_data_platform,  -- 4
