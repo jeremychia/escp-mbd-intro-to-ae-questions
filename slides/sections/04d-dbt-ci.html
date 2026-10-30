@@ -1,0 +1,42 @@
+<!-- test in production -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>I want to test changes before deploying them. how?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on=".github/workflows"></ul>
+    <div class="main"><div class="fill"><img class="shot" src="assets/test-in-production.png" alt="meme: a girl smiling in front of a burning house, captioned test in production, what could go wrong" style="width:70%"></div></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/deploy/continuous-integration">CI in dbt</a></div></div></section>
+
+<!-- CI/CD pipeline -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>what happens in a continuous integration pipeline?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on=".github/workflows"></ul>
+    <div class="main"><div class="fill"><img src="assets/ci-cd.png" alt="code is committed, then the CI pipeline builds and runs unit and integration tests, then the CD pipeline moves it through review, staging and production"></div></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/deploy/continuous-integration">CI in dbt</a><a href="https://docs.github.com/en/actions">GitHub Actions</a><a href="https://en.wikipedia.org/wiki/CI/CD">CI/CD</a></div></div></section>
+
+<!-- CI steps -->
+<section id="ci-steps" class="slide card"><div class="sheet"><div class="pad">
+  <h2>what happens in a continuous integration pipeline?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on=".github/workflows"></ul>
+    <div class="cols c2 main" style="display:grid;align-items:start">
+      <ol class="nums">
+        <li>a virtual environment is initialised</li>
+        <li>dependencies are installed</li>
+        <li>the connection to the database is checked</li>
+        <li>a schema is created for testing</li>
+      </ol>
+      <div style="display:grid;gap:1.6cqh">
+        <div class="panel head"><h3>automated checks and validation</h3><div><ul class="dots small"><li>organisation-specific checks (e.g. documentation has certain keywords, models are only created in specific schemas)</li><li>style formatting checks (e.g. <a href="https://sqlfmt.com/">sqlfmt</a>, <a href="https://docs.sqlfluff.com/">SQLFluff</a>)</li></ul></div></div>
+        <div class="panel head"><h3>integration tests</h3><div><p class="small" style="margin:0">build all dbt models and tests in a test schema, based on samples</p></div></div>
+      </div>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/deploy/continuous-integration">CI in dbt</a><a href="https://pre-commit.com/">pre-commit</a></div></div></section>
+
+<!-- dbt meme -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <div class="fill" style="--cap:80cqh"><img class="shot" src="assets/dbt-meme.png" alt="LinkedIn post by Eva Schreyer on dbt and Fivetran merging, with a meme: thank you for changing my life, says one character; dbt replies, I'm literally just a Jinja templater that runs your SQL in the right order"></div>
+</div></div></section>

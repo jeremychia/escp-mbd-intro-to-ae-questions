@@ -1,0 +1,175 @@
+<!-- data tests and unit tests -->
+<section id="data-tests" class="slide card"><div class="sheet"><div class="pad">
+  <h2>you could also automate checks for data quality</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models,tests"></ul>
+    <div class="cols c2 main" style="display:grid;align-items:start">
+      <div class="panel head"><h3><a href="https://docs.getdbt.com/docs/build/data-tests">data tests</a></h3><div><ul class="dots"><li>assertions you make about your model.</li><li>a way to confirm that your outputs and inputs are as expected.</li><li>implemented as generic (column-level) tests or singular (model-level) tests.</li></ul></div></div>
+      <div class="panel head"><h3><a href="https://docs.getdbt.com/docs/build/unit-tests">unit tests</a></h3><div><ul class="dots"><li>validate small portions of your functional code.</li><li>validate your SQL modelling logic on a small set of static inputs.</li><li>typically, you want to test both probable scenarios and edge cases.</li></ul></div></div>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- characteristics of good datasets -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>characteristics of good datasets?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models,tests"></ul>
+    <div class="main">
+      <p>referencing the information quality framework:</p>
+      <div class="chips" style="margin-top:3cqh">
+        <span class="chip">accuracy</span><span class="chip">completeness</span><span class="chip">consistency (one source of truth)</span><span class="chip">timeliness</span><span class="chip">relevance</span><span class="chip">validity</span><span class="chip">accessibility</span><span class="chip">interpretability</span><span class="chip">security and privacy</span>
+      </div>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://en.wikipedia.org/wiki/Information_quality">information quality</a></div></div></section>
+
+<!-- standard data tests -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>some standard data tests?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models,tests"></ul>
+    <div class="main">
+      <div class="chips" style="margin-top:2cqh">
+        <a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">not null</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">unique</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">accepted values</a><a class="chip alt" href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">expression is true</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">referential integrity</a>
+      </div>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- where to use tests -->
+<section id="where-tests" class="slide card tests-reveal" data-steps="2" data-k="0"><div class="sheet"><div class="pad">
+  <h2>where to use tests?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models,tests"></ul>
+    <div class="cols main" style="display:grid;grid-template-columns:3fr 2fr;align-items:center">
+      <figure class="code sm" style="justify-self:center"><figcaption><i></i><i></i><i></i><span>_dimensions__models.yml</span></figcaption>
+<pre style="font-size:.98cqw;line-height:1.42"><span class="ck">models</span><span class="cp">:</span>
+  <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> dim_students
+    <span class="ck">description</span><span class="cp">: |</span>
+      <span class="cs">Summary: Information on ESCP Students in MBD</span>
+      <span class="cs">Granularity: one row per student</span>
+      <span class="cs">Filters: Currently enrolled students only</span>
+    <span class="ck">columns</span><span class="cp">:</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_id
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Unique identifier for students"</span>
+        <span class="ck">data_tests</span><span class="cp">:</span>
+          <span class="blank">- not_null</span>
+          <span class="blank">- unique</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_name
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"{{ doc('student_name') }}"</span>
+        <span class="ck">data_tests</span><span class="cp">:</span>
+          <span class="blank">- not_null</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_gpa
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Decimal score out of 20"</span>
+        <span class="ck">data_tests</span><span class="cp">:</span>
+          <span class="blank">- dbt_utils.expression_is_true:</span>
+              <span class="blank">arguments:</span>
+                <span class="blank">expression: '>= 0'</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> promotion
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Student promotion"</span>
+        <span class="ck">data_tests</span><span class="cp">:</span>
+          <span class="blank">- accepted_values:</span>
+              <span class="blank">values: ['MBD2025', 'MBD2026']</span></pre></figure>
+      <div style="display:grid;gap:3cqh;justify-items:start">
+        <div class="pills" id="test-pills"></div>
+        <span class="chip">primary key</span><span class="chip">numerical values</span><span class="chip">categorical</span>
+        <p class="note" id="test-caption"></p>
+      </div>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/resource-properties/data-tests">data test properties</a><a href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">dbt_utils</a><a href="https://docs.getdbt.com/reference/resource-configs/severity">severity</a></div></div></section>
+
+<!-- how does a test work -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>how does it work?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models,tests"></ul>
+    <div class="cols main" style="display:grid;grid-template-columns:1fr 1.25fr;align-items:center;gap:2.4cqw">
+      <div style="display:grid;gap:2.4cqh">
+        <div class="callout">imagine you wanted to do a test on the data:</div>
+        <figure class="code"><figcaption><i></i><i></i><i></i><span>_marts__models.yml</span></figcaption>
+<pre><span class="ck">version</span><span class="cp">:</span> <span class="cn">2</span>
+<span class="ck">models</span><span class="cp">:</span>
+  <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> <mark class="m2">mrt_bpf_per_user</mark>
+    <span class="ck">columns</span><span class="cp">:</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> user_id_buyer
+        <span class="ck">data_tests</span><span class="cp">:</span>
+          <span class="cp">-</span> <mark>unique</mark></pre></figure>
+        <div><a class="cmd" href="https://docs.getdbt.com/reference/commands/test">dbt test --select mrt_bpf_per_user</a></div>
+      </div>
+      <figure class="code sm"><figcaption><i></i><i></i><i></i><span>compiled by dbt</span></figcaption>
+<pre><span class="ck">select</span>
+  <span class="cf">count</span>(*) <span class="ck">as</span> failures,
+  <span class="cf">count</span>(*) != <span class="cn">0</span> <span class="ck">as</span> should_warn,
+  <span class="cf">count</span>(*) != <span class="cn">0</span> <span class="ck">as</span> should_error
+<span class="ck">from</span> (
+  <span class="ck">with</span> dbt_test__target <span class="ck">as</span> (
+    <span class="ck">select</span> user_id_buyer <span class="ck">as</span> unique_field
+    <span class="ck">from</span> <mark class="m2">`vi-dv-prod-data.marts.mrt_bpf_per_user`</mark>
+    <span class="ck">where</span> user_id_buyer <span class="ck">is not null</span>
+  )
+
+  <span class="ck">select</span>
+    unique_field,
+    <span class="cf">count</span>(*) <span class="ck">as</span> n_records
+  <span class="ck">from</span> dbt_test__target
+  <span class="ck">group by</span> unique_field
+  <mark>having count(*) > 1</mark>
+) dbt_internal_test</pre></figure>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/commands/test">dbt test</a><a href="https://docs.getdbt.com/reference/node-selection/syntax">--select syntax</a></div></div></section>
+
+<!-- packages -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>I have a use case. do I always need to write code myself?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="package-lock.yml,packages.yml"></ul>
+    <div class="main">
+      <ul class="dots lead" style="max-width:56cqw;gap:2.4cqh;margin-bottom:6cqh">
+        <li>in some cases, yes.</li>
+        <li>but in other cases, you'll find that someone else has already written the logic for this transformation.</li>
+        <li>these are called <b><a href="https://docs.getdbt.com/docs/build/packages">packages</a></b>, similar to packages in Python or R.</li>
+        <li>the lock file ensures versions are kept.</li>
+      </ul>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/build/packages">packages</a><a href="https://hub.getdbt.com/">package hub</a></div></div></section>
+
+<!-- common packages -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>I have a use case. do I always need to write code myself?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="package-lock.yml,packages.yml"></ul>
+    <div class="main">
+      <div class="fill"><figure class="code"><figcaption><i></i><i></i><i></i><span>packages.yml</span></figcaption>
+<pre><span class="ck">packages</span><span class="cp">:</span>
+  <span class="cp">-</span> <span class="ck">package</span><span class="cp">:</span> <span class="cs">calogica/dbt_expectations</span>
+    <span class="ck">version</span><span class="cp">:</span> [<span class="cn">"&gt;=0.10.0"</span>, <span class="cn">"&lt;0.11.0"</span>]
+  <span class="cp">-</span> <span class="ck">package</span><span class="cp">:</span> <span class="cs">dbt-labs/dbt_utils</span>
+    <span class="ck">version</span><span class="cp">:</span> [<span class="cn">"&gt;=1.1.0"</span>, <span class="cn">"&lt;1.2.0"</span>]
+  <span class="cp">-</span> <span class="ck">package</span><span class="cp">:</span> <span class="cs">dbt-labs/codegen</span>
+    <span class="ck">version</span><span class="cp">:</span> [<span class="cn">"&gt;=0.9.0"</span>, <span class="cn">"&lt;1.0.0"</span>]
+  <span class="cp">-</span> <span class="ck">package</span><span class="cp">:</span> <span class="cs">dbt-labs/dbt_external_tables</span>
+    <span class="ck">version</span><span class="cp">:</span> [<span class="cn">"&gt;=0.9.0"</span>, <span class="cn">"&lt;0.10.0"</span>]</pre></figure></div>
+      <p class="note" style="text-align:center;margin-top:1.4cqh">examples of commonly used packages</p>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">dbt_utils</a><a href="https://hub.getdbt.com/calogica/dbt_expectations/latest/">dbt_expectations</a><a href="https://hub.getdbt.com/dbt-labs/codegen/latest/">codegen</a><a href="https://hub.getdbt.com/dbt-labs/dbt_external_tables/latest/">dbt_external_tables</a></div></div></section>
+<script>
+// stepped slide: guess where tests go, then reveal them
+const testSlide = document.querySelector('.tests-reveal');
+const TEST_STEPS = [
+  {pill:'guess', caption:'which tests would you add to each column? use → to reveal.'},
+  {pill:'reveal', caption:'not_null and unique on the primary key, expression_is_true on numbers, accepted_values on categories.'},
+];
+document.getElementById('test-pills').innerHTML = TEST_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
+function setTests(k){
+  testSlide.dataset.k = k;
+  testSlide.querySelectorAll('.pills button').forEach(button => button.classList.toggle('on', +button.dataset.k === k));
+  document.getElementById('test-caption').textContent = TEST_STEPS[k].caption;
+}
+testSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setTests(+button.dataset.k));
+testSlide.step = setTests;
+</script>

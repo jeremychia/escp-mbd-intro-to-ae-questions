@@ -1,0 +1,96 @@
+<!-- add documentation -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>context matters. add documentation!</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="docs,models"></ul>
+    <div class="main">
+      <p>documentation helps users better understand what the data (model and column) is about.</p>
+      <p style="margin-top:2cqh">dbt allows for two ways of writing documentation:</p>
+      <div class="cols c2" style="margin-top:2cqh">
+        <div class="panel"><div class="k">01</div><p>directly in the <code>.yml</code> configuration of the model.</p></div>
+        <div class="panel"><div class="k">02</div><p>as a markdown (<code>.md</code>) file, using <a href="https://docs.getdbt.com/reference/dbt-jinja-functions/doc">doc blocks</a>, which can be shared throughout the entire project.</p></div>
+      </div>
+      <p style="margin-top:3cqh"><b>which is potentially better?</b></p>
+      <p class="note">hint: think of the software engineering principle “<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">do not repeat yourself</a>” (DRY).</p>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/doc">doc blocks</a></div></div></section>
+
+<!-- documentation, shown -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>context matters. add documentation!</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="docs,models"></ul>
+    <div class="main">
+      <div class="code-pair">
+        <figure class="code"><figcaption><i></i><i></i><i></i><span>_dimensions__models.yml</span></figcaption>
+<pre><span class="ck">models</span><span class="cp">:</span>
+  <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> dim_students
+    <span class="ck">description</span><span class="cp">: |</span>
+      <span class="cs">Summary: Information on ESCP Students in MBD</span>
+      <span class="cs">Granularity: one row per student</span>
+      <span class="cs">Filters: Currently enrolled students only</span>
+    <span class="ck">columns</span><span class="cp">:</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_id
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Unique identifier for students"</span>
+      <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_name
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"</span><mark>{{ doc('student_name') }}</mark><span class="cs">"</span></pre></figure>
+        <div class="code-link" aria-hidden="true">→</div>
+        <figure class="code"><figcaption><i></i><i></i><i></i><span>student_name.md</span></figcaption>
+<pre><mark>{% docs student_name %}</mark>
+First name, last name of student
+<span class="cp">{% enddocs %}</span></pre></figure>
+      </div>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/doc">doc blocks</a><a href="https://docs.getdbt.com/reference/resource-properties/description">description</a></div></div></section>
+
+<!-- co-create documentation -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>what are some characteristics of good documentation?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="docs,models"></ul>
+    <div class="main" style="align-items:center;text-align:center">
+      <h3 style="font-family:var(--serif);font-size:2.6cqw;font-weight:600">let's co-create.</h3>
+      <p style="margin-top:1.4cqh">write what you think are good descriptions for these fields.</p>
+      <p style="margin-top:2cqh;font-size:2.2cqw"><a href="https://forms.gle/fQsENHxdH1GQatR47">forms.gle/fQsENHxdH1GQatR47</a></p>
+      <img src="assets/students-table.png" alt="a sample table with columns student_id, student_name, attendance, avg_result, applied_on and admitted_on" style="width:80%;margin-top:4cqh">
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/resource-properties/description">writing descriptions</a></div></div></section>
+
+<!-- documentation suggestions -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>some suggestions for adding good documentation</h2>
+  <div class="cols body" style="grid-template-columns:repeat(5,1fr);gap:1.2cqw;margin-bottom:6cqh">
+    <div class="panel tint t1"><div class="k word">purpose</div><p>column description and purpose</p></div>
+    <div class="panel tint t4"><div class="k word">type and format</div><p>expected data type, if not obvious, and format (e.g. YYYY-MM-DD)</p></div>
+    <div class="panel tint t3"><div class="k word">source</div><p>the source</p></div>
+    <div class="panel tint t5"><div class="k word">transformations</div><p>transformations, if applicable</p></div>
+    <div class="panel tint t2"><div class="k word">usage</div><p>usage notes (e.g. updated weekly)</p></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a><a href="https://docs.getdbt.com/reference/resource-properties/description">description</a></div></div></section>
+
+<!-- projects that improve standards -->
+<section id="standard-projects" class="slide card"><div class="sheet"><div class="pad">
+  <h2>projects exist to help improve dbt project standards</h2>
+  <p class="sub">some examples (non-exhaustive)</p>
+  <div class="body lead" style="display:grid;gap:4cqh;margin-bottom:4cqh"><div class="cols c2" style="grid-auto-rows:1fr">
+    <div class="panel head"><h3><a href="https://github.com/dbt-labs/dbt-project-evaluator">dbt-project-evaluator</a> · dbt Labs</h3><div><p>checks against dbt's suggested <a href="https://docs.getdbt.com/best-practices">best practices</a> to evaluate projects in six key areas (modelling, testing, etc.).</p></div></div>
+    <div class="panel head"><h3><a href="https://github.com/dbt-opiner/dbt-opiner">dbt-opiner</a> · Rodrigo Loredo, Lead AE at Vinted</h3><div><p>additional best practices and governance-related checks on dbt projects. supports BigQuery too.</p></div></div>
+  </div>
+  <p>if you're using a more established tool, there are often standards or best practices to fall back on when building the project.</p></div>
+</div></div></section>
+
+<!-- common project standards -->
+<section id="project-standards" class="slide card"><div class="sheet"><div class="pad">
+  <h2>common project standards?</h2>
+  <div class="cols c2 body lead" style="align-items:center;margin-bottom:6cqh">
+    <ul class="dots">
+      <li>every model and column is documented</li>
+      <li>no circular dependencies: upstream models do not depend on downstream models</li>
+      <li>every model has a test for its primary key</li>
+    </ul>
+    <div class="panel head"><h3>column naming</h3><div><ul class="dots"><li>booleans start with <code>is_</code> or <code>has_</code></li><li>timestamps end with <code>_at</code> or <code>_date</code></li></ul></div></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/best-practices/how-we-style/0-how-we-style-our-dbt-projects">style guide</a><a href="https://docs.getdbt.com/reference/resource-properties/data-tests">primary key tests</a></div></div></section>

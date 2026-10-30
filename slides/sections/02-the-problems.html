@@ -1,0 +1,72 @@
+<!-- divider 02 -->
+<section class="slide navy">
+  <svg class="net" aria-hidden="true" style="opacity:.6"></svg>
+  <div class="pad" style="top:34cqh">
+    <div class="kicker">section 02</div>
+    <h1 style="margin-top:2cqh">what problems do analytics engineers try to solve?</h1>
+  </div>
+  <img src="assets/escp.png" alt="ESCP Business School" style="position:absolute;left:3.6cqw;bottom:5cqh;height:6cqh;filter:brightness(0) invert(1)">
+</section>
+
+<!-- what users want -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>what business users and data folks want</h2>
+  <div class="cols c3 body lead" style="margin-bottom:6cqh">
+    <div class="panel"><div class="k">find</div><p>easily find the datasets I need to best answer questions.</p></div>
+    <div class="panel"><div class="k">model</div><p>be empowered to model data confidently and with ease, if I need to.</p></div>
+    <div class="panel tint"><div class="k">trust</div><p>trust the data I use: that it is accurate, complete and timely.</p></div>
+  </div>
+</div></div></section>
+
+<!-- what users actually say -->
+<section id="help-channel" class="slide card chat" data-steps="5" data-k="0"><div class="sheet"><div class="pad">
+  <h2>and what we actually hear</h2>
+  <p class="sub">one week in the data team's help channel</p>
+  <div class="body chat-wrap">
+    <div class="thread" role="log" aria-label="five requests in the data-help channel over one week, each tagged with the problem behind it">
+      <div class="channel"># data-help</div>
+      <div class="msg" data-at="0" style="--c:var(--peach)"><span class="avatar">S</span><div><p class="meta"><b>sales lead</b> · mon 09:02</p><p>hi, can I have this report in 1 hour please?</p></div><span class="tag">self-service</span></div>
+      <div class="msg" data-at="1" style="--c:var(--lavender-soft)"><span class="avatar">M</span><div><p class="meta"><b>marketing</b> · tue 11:47</p><p>the number here doesn't look right…</p></div><span class="tag">trust</span></div>
+      <div class="msg" data-at="2" style="--c:var(--steel)"><span class="avatar">P</span><div><p class="meta"><b>product</b> · wed 08:15</p><p>we're missing data from yesterday…</p></div><span class="tag">freshness</span></div>
+      <div class="msg" data-at="3" style="--c:var(--lemon)"><span class="avatar">O</span><div><p class="meta"><b>operations</b> · thu 14:30</p><p>why is the pick-up success rate 110%?</p></div><span class="tag">data quality</span></div>
+      <div class="msg" data-at="4" style="--c:var(--s3-soft)"><span class="avatar" style="outline:.12cqw solid var(--calypso)">F</span><div><p class="meta"><b>finance</b> · fri 17:48</p><p>it looks like warehouse costs have doubled in the last week, can you look at it?</p><img src="assets/warehouse-costs.png" alt="a line chart of warehouse costs climbing over time" class="attachment"></div><span class="tag">cost</span></div>
+    </div>
+  </div>
+  <div class="sticker round" style="right:9cqw;top:30cqh;width:17cqw;background:var(--lemon);font-size:2.6cqw;--rot:-8deg">sound<br>familiar?</div>
+</div></div></section>
+
+<!-- transform hat -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <div class="fill" style="--cap:80cqh"><img class="shot" src="assets/transform-hat.jpg" alt="Instagram post of a black cap embroidered with: ever since i was young i wanted to transform unstructured data into actionable business insights"></div>
+</div></div></section>
+
+<!-- knowledge from first principles -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>knowledge from first principles</h2>
+  <div class="cols c2 body lead" style="margin-bottom:6cqh">
+    <div class="panel head"><h3>evidence matters</h3><div><p>statements need backup if we're going to trust them.</p><p style="margin-top:1.4cqh">expect others to provide evidence for their assertions, and we may call them out if we think it's lacking.</p></div></div>
+    <div class="panel head"><h3>context matters</h3><div><p><b><a href="https://en.wikipedia.org/wiki/Materiality_(auditing)">materiality</a>:</b> the level of accuracy we need depends on what we are trying to achieve.</p><p style="margin-top:1.4cqh">a range might be enough for estimating the size of an addressable market. much more precise numbers might be needed for financial reporting.</p></div></div>
+  </div>
+</div></div></section>
+
+<!-- building consensus -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>building consensus in groups?</h2>
+  <div class="cols c3 body lead" style="margin-bottom:6cqh">
+    <div class="panel tint t1"><div class="k word">trust</div><p>prioritise trust and accuracy of the information that gets circulated.</p></div>
+    <div class="panel tint t3"><div class="k word">access</div><p>enable decision makers to plug directly into an organisation's “central nervous system” of information.</p></div>
+    <div class="panel tint t2"><div class="k word">culture</div><p>build cultural norms that reward transparency and epistemic humility.</p></div>
+  </div>
+</div></div></section>
+<script>
+// stepped slide: requests arrive one at a time through the week
+const chatSlide = document.querySelector('.chat');
+function setChat(k){
+  chatSlide.dataset.k = k;
+  chatSlide.querySelectorAll('.msg').forEach(message => message.classList.toggle('later', +message.dataset.at > k));
+  const sticker = chatSlide.querySelector('.sticker');
+  sticker.classList.toggle('later', k < 4);
+  if (k === 4) { sticker.style.animation = 'none'; void sticker.offsetWidth; sticker.style.animation = ''; }
+}
+chatSlide.step = setChat;
+</script>

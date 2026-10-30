@@ -1,0 +1,71 @@
+<!-- divider 03 -->
+<section class="slide navy">
+  <svg class="net" aria-hidden="true" style="opacity:.6"></svg>
+  <div class="pad" style="top:34cqh">
+    <div class="kicker">section 03</div>
+    <h1 style="margin-top:2cqh">what are key areas where analytics engineers add value?</h1>
+  </div>
+  <img src="assets/escp.png" alt="ESCP Business School" style="position:absolute;left:3.6cqw;bottom:5cqh;height:6cqh;filter:brightness(0) invert(1)">
+</section>
+
+<!-- AEs obsess over these questions -->
+<section id="aes-questions" class="slide card"><div class="sheet"><div class="pad">
+  <h2>analytics engineers obsess over these questions</h2>
+  <div class="cols c2 body small" style="grid-auto-rows:1fr;gap:1.2cqw;margin-bottom:1cqh">
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">what context (documentation) do we need to provide about the model, so business users can use it quickly?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">how should tables be modelled so they are cost-optimal?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">what is the clearest possible naming convention for tables and columns in our warehouse?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">how can we be notified of a problem in the data before a business user finds a broken chart in our visualisation tool?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">how can we ensure and improve the quality of our data as it's produced, rather than cleaning it downstream?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">how do we set guardrails to allow others to develop their own models?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">where do we set access controls to protect data privacy and ensure regulatory compliance?</p></div>
+    <div class="panel" style="padding:2cqh 1.8cqw;display:flex;align-items:center"><p style="margin:0">how should projects be structured for good cross-domain collaboration and scalability?</p></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/best-practices/how-we-style/0-how-we-style-our-dbt-projects">naming and style</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">project structure</a><a href="https://docs.getdbt.com/docs/mesh/govern/model-access">access control</a></div></div></section>
+
+<!-- columns meme -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <div class="cols c2 fill" style="align-items:center">
+    <img class="shot" src="assets/columns-meme.jpg" alt="meme: a couple embracing, labelled columns and analytics engineers" style="width:100%">
+    <div style="display:grid;gap:2cqh">
+      <img class="shot" src="assets/slack-columns-1.png" alt="Slack message from Brad C: for me, you could replace columns with so many things and this would still be true: documentation, CTEs, properly configured tests, PRs that pass CI checks, published SQL style standards" style="width:100%">
+      <img class="shot" src="assets/slack-columns-2.png" alt="Slack message from Brad C: you could also do something like my developers on the right and direct table references, recursive lineage or incomplete YML files on the left. the possibilities are pretty endless" style="width:100%">
+    </div>
+  </div>
+</div></div></section>
+
+<!-- well-modelled data -->
+<section id="well-modelled" class="slide card"><div class="sheet"><div class="pad">
+  <h2>well-modelled data enables faster data mining cycles</h2>
+  <div class="cols body" style="grid-template-columns:2fr 3fr;align-items:center">
+    <div class="fill"><img src="assets/crisp-dm.png" alt="the CRISP-DM cycle: business understanding, data understanding, data preparation, modelling, evaluation and deployment around a data store"></div>
+    <div>
+      <p>the analytics engineer takes on much of the first steps when modelling (structuring) the datasets. if done right, there is a <b>significantly reduced workload</b> when performing data mining, as the datasets used are:</p>
+      <ul class="dots" style="margin-top:2.4cqh">
+        <li><b>contextualised</b> (ease of business understanding)</li>
+        <li><b>easily discoverable</b> (facilitates data understanding)</li>
+        <li><b>reliable</b> (good data quality; less data preparation, such as cleaning and formatting)</li>
+      </ul>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP-DM</a></div></div></section>
+
+<!-- engineering good analytical data -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>engineering good analytical data through</h2>
+  <div class="chips body" style="max-width:70cqw">
+    <a class="chip" href="https://docs.getdbt.com/docs/build/documentation">standards and documentation</a>
+    <a class="chip" href="https://docs.getdbt.com/docs/build/materializations">monitoring and code optimisation</a>
+    <a class="chip" href="https://docs.getdbt.com/docs/build/data-tests">data testing</a>
+    <a class="chip" href="https://git-scm.com/doc">versioning</a>
+    <a class="chip" href="https://docs.getdbt.com/docs/deploy/continuous-integration">continuous integration</a>
+    <a class="chip" href="https://docs.getdbt.com/docs/build/models">modelling</a>
+    <a class="chip" href="https://docs.getdbt.com/docs/build/packages">packages</a>
+  </div>
+</div></div></section>
+
+<!-- ADLC -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>encapsulated in the analytics development lifecycle</h2>
+  <div class="fill body"><img src="assets/adlc.png" alt="the analytics development lifecycle as an infinity loop: data (develop, test, deploy, plan) and ops (operate, observe, discover, analyze)"></div>
+</div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/resources/the-analytics-development-lifecycle">the analytics development lifecycle</a></div></div></section>

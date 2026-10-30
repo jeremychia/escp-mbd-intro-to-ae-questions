@@ -1,0 +1,273 @@
+<!-- divider 04 -->
+<section class="slide navy">
+  <svg class="net" aria-hidden="true" style="opacity:.6"></svg>
+  <div class="pad" style="top:34cqh">
+    <div class="kicker">section 04</div>
+    <h1 style="margin-top:2cqh">how does dbt help solve these problems?</h1>
+  </div>
+  <img src="assets/escp.png" alt="ESCP Business School" style="position:absolute;left:3.6cqw;bottom:5cqh;height:6cqh;filter:brightness(0) invert(1)">
+</section>
+
+<!-- dbt helps, but how -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>dbt is a transformation framework which helps, but how?</h2>
+  <div class="cols c2 body" style="align-items:center">
+    <ul class="dots">
+      <li>modularises and centralises analytics code</li>
+      <li>provides guardrails (versioning, testing) while allowing collaboration</li>
+      <li>aids monitoring and visibility with tests and alerts</li>
+      <li>single source of truth for metrics and business definitions</li>
+    </ul>
+    <div class="fill"><img src="assets/dbt-platform.png" alt="dbt at the centre of the data platform, between data ingestion tools and analysis, visualisation and operational analytics tools, covering orchestration, quality and the data catalog"></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/introduction">what is dbt</a><a href="https://docs.getdbt.com/docs/build/data-tests">tests</a><a href="https://docs.getdbt.com/docs/build/projects">projects</a></div></div></section>
+
+<!-- components of a data stack -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>software engineering principles behind a data stack</h2>
+  <svg id="mindmap" class="body" viewBox="0 0 1000 470" role="img" aria-label="mind map: components of a data stack connect to single responsibility principle (modularity), version control (git), continuous delivery (CI/CD), DRY: do not repeat yourself (macros), open-closed principle (modelling layers, dependency management) and maintainability (testing, documentation)" style="width:100%"></svg>
+</div></div></section>
+
+<!-- alumni using dbt -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>an increasingly in-demand skill: MBD alumni using dbt</h2>
+  <div id="alumni" class="body" style="display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:2.4cqh 1.4cqw"></div>
+</div></div></section>
+
+<!-- project structure -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>how are dbt projects structured?</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on=".github/workflows,docs,models,tests,package-lock.yml,packages.yml"></ul>
+    <div class="main">
+      <div style="display:grid;gap:1.8cqh">
+        <div class="panel" style="padding:1.4cqh 1.6cqw"><p style="margin:0"><a href="https://docs.getdbt.com/docs/build/models"><code>models</code></a> are the <b>basic building blocks</b>. one model has one file, and contains logic that either transforms raw data into a dataset that is ready for analytics, or an intermediate step.</p></div>
+        <div class="panel" style="padding:1.4cqh 1.6cqw"><p style="margin:0"><a href="https://docs.getdbt.com/docs/build/documentation"><code>docs</code></a>: <b>documentation</b> can be written in markdown files.</p></div>
+        <div class="panel" style="padding:1.4cqh 1.6cqw"><p style="margin:0"><a href="https://docs.getdbt.com/docs/build/data-tests"><code>tests</code></a>: you can write tests in SQL to <b>test models</b>.</p></div>
+        <div class="panel" style="padding:1.4cqh 1.6cqw"><p style="margin:0"><a href="https://docs.github.com/en/actions"><code>.github/workflows</code></a>: workflows are executed as part of the <b>CI/CD pipeline</b>.</p></div>
+        <div class="panel" style="padding:1.4cqh 1.6cqw"><p style="margin:0"><a href="https://docs.getdbt.com/docs/build/packages"><code>packages.yml</code></a>: configuration to take <b>modularised code</b> from libraries.</p></div>
+      </div>
+      <p class="note" style="margin-top:2cqh">I focus on key aspects of a dbt project. to read more, see the <a href="https://docs.getdbt.com/docs/build/projects">dbt documentation</a>.</p>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- building blocks: Kimball -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>what are the building blocks of dbt? models.</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models"></ul>
+    <div class="main">
+      <div class="fill"><img src="assets/kimball-erd.png" alt="an entity-relationship diagram: a fact_sales table joined to dimension tables for product, customer, address, credit card, order status and date"></div>
+      <p class="note" style="text-align:center;margin-top:1cqh;font-size:1.6cqw;color:var(--navy)">remember <a href="https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/">Kimball</a>'s dimensional modelling?</p>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/">Kimball techniques</a><a href="https://docs.getdbt.com/blog/kimball-dimensional-model">Kimball in dbt</a></div></div></section>
+
+<!-- data cleaning -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>“data cleaning is 80%* of the work”</h2>
+  <p class="sub">you'll want to handle things like:</p>
+  <div class="chips body" style="max-width:72cqw">
+    <span class="chip">handling <code>null</code> values</span>
+    <span class="chip">standardising formats: “2025-11-21” vs. “11/21/2025” vs. “21/11/2025”</span>
+    <span class="chip">type casting</span>
+    <span class="chip">deduplication</span>
+    <span class="chip">removing invalid or out-of-range values</span>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://en.wikipedia.org/wiki/Data_cleansing">data cleansing</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/2-staging">staging models</a></div></div></section>
+
+<!-- statement: storage is cheaper than compute -->
+<section class="slide statement">
+  <div class="pad">
+    <h1 style="font-size:6.2cqw;line-height:1.35">storage is <span class="uline">cheaper<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path class="vline" pathLength="1" d="M4 16 C 90 6, 210 4, 296 10 C 230 14, 130 20, 40 26" stroke="var(--peach)" stroke-width="7"/></svg></span><br>than compute</h1>
+  </div>
+  <div class="sticker round" style="right:8cqw;top:10cqh;width:15cqw;background:var(--lemon);font-size:3.4cqw;--rot:9deg">~3.2×</div>
+</section>
+
+<!-- storage vs compute, worked -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>storage is cheaper than compute</h2>
+  <div class="cols c2 body small" style="align-items:center">
+    <div>
+      <ul class="dots small">
+        <li>if you scan large amounts of data frequently, query cost dominates.</li>
+        <li>so to optimise, you would prefer storage over compute.</li>
+      </ul>
+      <div class="panel" style="margin-top:2.4cqh">
+        <p class="small" style="margin:0"><b>example, with <a href="https://cloud.google.com/bigquery/pricing">Google Cloud</a></b></p>
+        <p class="small">storage: <b>€17.408</b> per TiB per month<br>query compute: <b>€5.44</b> per TiB processed</p>
+        <p class="small">breakeven: 17.408 / 5.44 ≈ <b>3.2 TiB processed per month per TiB stored</b>.</p>
+      </div>
+      <ul class="dots small" style="margin-top:2.4cqh">
+        <li>if you query more than ~3.2× the stored data per month, storage is cheaper.</li>
+        <li>after about 3.2 full scans a month, the query cost overtakes the storage cost.</li>
+      </ul>
+    </div>
+    <div class="fill"><img class="shot" src="assets/kryder-law.png" alt="Kryder's law chart: the cost of data storage per terabyte fell from $14,000,000 in 1980 to $55 today. source: company data, Credit Suisse estimates"></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://cloud.google.com/bigquery/pricing">BigQuery pricing</a><a href="https://en.wikipedia.org/wiki/Mark_Kryder">Kryder's law</a></div></div></section>
+
+<!-- model layers, stepped -->
+<section id="model-layers" class="slide card models" data-steps="5" data-k="0"><div class="sheet"><div class="pad">
+  <h2>what are the building blocks of dbt? models.</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models"></ul>
+    <div class="main">
+      <div class="pills" id="model-pills"></div>
+      <svg viewBox="0 0 900 300" role="img" aria-label="model layers in dbt: raw_data flows into staging, staging flows into facts and dimensions, and both flow into marts. in the medallion architecture, raw_data is bronze, staging is silver, and facts, dimensions and marts are gold" style="width:100%;margin-top:2cqh">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#233759"/></marker></defs>
+        <path class="edge" d="M175 115 H235" marker-end="url(#arrow)"/>
+        <path class="edge" d="M405 105 L485 55" marker-end="url(#arrow)"/>
+        <path class="edge" d="M405 125 L485 175" marker-end="url(#arrow)"/>
+        <path class="edge" d="M655 55 L725 105" marker-end="url(#arrow)"/>
+        <path class="edge" d="M655 175 L725 125" marker-end="url(#arrow)"/>
+        <g class="layer l1"><rect class="box" x="15" y="85" width="160" height="60" rx="12"/><text x="95" y="115">raw_data</text></g>
+        <g class="layer l2"><rect class="box" x="240" y="85" width="165" height="60" rx="12"/><text x="322" y="115">staging</text></g>
+        <g class="layer l3"><rect class="box" x="490" y="25" width="165" height="60" rx="12"/><text x="572" y="55">facts</text></g>
+        <g class="layer l3"><rect class="box" x="490" y="145" width="165" height="60" rx="12"/><text x="572" y="175">dimensions</text></g>
+        <g class="layer l4"><rect class="box" x="730" y="85" width="160" height="60" rx="12"/><text x="810" y="115">marts</text></g>
+        <text class="medal-title" x="15" y="246">medallion architecture</text>
+        <g class="layer l1"><rect class="medal" x="15" y="256" width="160" height="34" rx="17" fill="#d9a074"/><text class="medal-text" x="95" y="273">bronze</text></g>
+        <g class="layer l2"><rect class="medal" x="240" y="256" width="165" height="34" rx="17" fill="#cfd5dd"/><text class="medal-text" x="322" y="273">silver</text></g>
+        <g class="layer l3 l4"><rect class="medal" x="490" y="256" width="400" height="34" rx="17" fill="#ecc85a"/><text class="medal-text" x="690" y="273">gold</text></g>
+      </svg>
+      <div class="panel small" id="model-caption" style="margin-top:2cqh;flex:1"></div>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">project structure</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/2-staging">staging</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/4-marts">marts</a><a href="https://docs.databricks.com/aws/en/lakehouse/medallion">medallion</a></div></div></section>
+
+<!-- dbt run -->
+<section class="slide card compile" data-steps="2" data-k="0"><div class="sheet"><div class="pad">
+  <h2>what are the building blocks of dbt? models.</h2>
+  <div class="with-tree">
+    <ul class="tree" data-on="models"></ul>
+    <div class="main">
+      <div class="callout" style="align-self:center;max-width:26cqw;text-align:center">let's say I tried to write a query on it and make it a mart.</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2.4cqh">
+        <div class="pills" id="compile-pills"></div>
+        <a class="cmd" href="https://docs.getdbt.com/reference/commands/run">dbt run --select mrt_bpf_per_user</a>
+      </div>
+      <div class="code-stack" style="margin-top:1.6cqh">
+        <figure class="code sm"><figcaption><i></i><i></i><i></i><span>mrt_bpf_per_user.sql</span></figcaption>
+<pre><mark class="m2">{{ config(materialized="view") }}</mark>
+
+<span class="ck">select</span>
+    user_id_buyer,
+    <span class="cf">sum</span>(bpf_after_refunds_eur) <span class="ck">as</span> bpf_after_refunds_eur,
+    <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> count_txn,
+    <span class="cf">sum</span>(bpf_after_refunds_eur)
+    / <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> avg_bpf_after_refunds_eur,
+<span class="ck">from</span> <mark>{{ ref("mrt_transactions") }}</mark>
+<span class="ck">where</span> <span class="cf">date</span>(transaction_at) = <span class="cs">'2025-10-01'</span>
+<span class="ck">group by</span> all
+<span class="ck">order by</span> avg_bpf_after_refunds_eur <span class="ck">desc</span></pre></figure>
+        <figure class="code sm"><figcaption><i></i><i></i><i></i><span>compiled by dbt</span></figcaption>
+<pre><mark class="m2">create or replace view</mark> <span class="cs">`vi-dv-prod-data.marts.mrt_bpf_per_user`</span>
+<span class="ck">as</span> (
+  <span class="ck">select</span>
+      user_id_buyer,
+      <span class="cf">sum</span>(bpf_after_refunds_eur) <span class="ck">as</span> bpf_after_refunds_eur,
+      <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> count_txn,
+      <span class="cf">sum</span>(bpf_after_refunds_eur)
+      / <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> avg_bpf_after_refunds_eur,
+  <span class="ck">from</span> <mark>`vi-dv-prod-data.marts.mrt_transactions`</mark>
+  <span class="ck">where</span> <span class="cf">date</span>(transaction_at) = <span class="cs">'2025-10-01'</span>
+  <span class="ck">group by</span> all
+  <span class="ck">order by</span> avg_bpf_after_refunds_eur <span class="ck">desc</span>
+)</pre></figure>
+      </div>
+      <p class="note" id="compile-caption" style="margin-top:1.4cqh"></p>
+    </div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/commands/run">dbt run</a><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/ref">ref</a><a href="https://docs.getdbt.com/docs/build/materializations">materializations</a></div></div></section>
+<script>
+// mind map of the software engineering principles behind a data stack
+(function drawMindMap(){
+  const svg = document.getElementById('mindmap');
+  const principles = [
+    {url:'https://en.wikipedia.org/wiki/Single-responsibility_principle', label:'single responsibility\nprinciple', x:210, y:150, leaves:[{url:'https://docs.getdbt.com/docs/build/models', label:'modularity', x:110, y:40}]},
+    {url:'https://git-scm.com/doc', label:'version control', x:430, y:115, leaves:[{url:'https://git-scm.com/doc', label:'Git', x:430, y:30}]},
+    {url:'https://en.wikipedia.org/wiki/CI/CD', label:'continuous\ndelivery', x:660, y:140, leaves:[{url:'https://docs.getdbt.com/docs/deploy/continuous-integration', label:'CI/CD', x:800, y:55}]},
+    {url:'https://en.wikipedia.org/wiki/Don%27t_repeat_yourself', label:'DRY: do not\nrepeat yourself', x:200, y:330, leaves:[{url:'https://docs.getdbt.com/docs/build/jinja-macros', label:'macros', x:90, y:430}]},
+    {url:'https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle', label:'open-closed\nprinciple', x:450, y:370, leaves:[{url:'https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview', label:'modelling layers', x:330, y:445}, {url:'https://docs.getdbt.com/docs/build/packages', label:'dependency\nmanagement', x:560, y:445}]},
+    {url:'https://docs.getdbt.com/best-practices/how-we-style/0-how-we-style-our-dbt-projects', label:'maintainability', x:720, y:335, leaves:[{url:'https://docs.getdbt.com/docs/build/data-tests', label:'testing', x:890, y:360}, {url:'https://docs.getdbt.com/docs/build/documentation', label:'documentation', x:790, y:435}]},
+  ];
+  const curve = (a, b) => `M${a.x} ${a.y} C${a.x} ${(a.y + b.y) / 2}, ${b.x} ${(a.y + b.y) / 2}, ${b.x} ${b.y}`;
+  const label = (node, colour, size) => {
+    const lines = node.label.split('\n');
+    return lines.map((line, index) => `<text x="${node.x}" y="${node.y + (index - (lines.length - 1) / 2) * (size + 3)}" style="font:600 ${size}px Inter,sans-serif;fill:${colour};text-anchor:middle;dominant-baseline:middle">${line}</text>`).join('');
+  };
+  const centre = {x:470, y:240};
+  let edges = '', nodes = '';
+  principles.forEach(principle => {
+    edges += `<path class="mm-edge" pathLength="1" style="stroke-dasharray:1" d="${curve(centre, principle)}" stroke="#233759" stroke-width="1.5" fill="none"/>`;
+    principle.leaves.forEach(leaf => edges += `<path class="mm-edge" pathLength="1" style="stroke-dasharray:1;--i:6" d="${curve(principle, leaf)}" stroke="#9999ff" stroke-width="1.5" fill="none"/>`);
+    nodes += `<a href="${principle.url}" target="_blank" rel="noopener"><rect x="${principle.x - 85}" y="${principle.y - 27}" width="170" height="54" rx="10" fill="#233759"/>${label(principle, '#fff', 15)}</a>`;
+    principle.leaves.forEach(leaf => nodes += `<a href="${leaf.url}" target="_blank" rel="noopener"><rect x="${leaf.x - 72}" y="${leaf.y - 21}" width="144" height="42" rx="21" fill="#ceceff"/>${label(leaf, '#233759', 14)}</a>`);
+  });
+  nodes += `<ellipse cx="${centre.x}" cy="${centre.y}" rx="105" ry="42" fill="#c7d5eb"/><text x="${centre.x}" y="${centre.y}" style="font:700 16px Inter,sans-serif;fill:#233759;text-anchor:middle;dominant-baseline:middle">components of a data stack</text>`;
+  svg.innerHTML = edges + nodes;
+})();
+
+// MBD alumni who use dbt, with the companies they work at
+const ALUMNI = [
+  {name:'Yara Achkar', year:2021, url:'https://www.linkedin.com/in/yaraachkar/', photo:'00.jpg', logos:['01.png']},
+  {name:'Chen Yenying', year:2024, url:'https://www.linkedin.com/in/yenying-chen/', photo:'08.jpg', logos:['09.png','10.png']},
+  {name:'Jacques Pique', year:2022, url:'https://www.linkedin.com/in/jacquespique/', photo:'15.jpg', logos:['16.png']},
+  {name:'Gao Yuhao', year:2022, url:'https://www.linkedin.com/in/yuhao-gao-2aa8061a5/', photo:'02.jpg', logos:['04.png','03.png','05.png']},
+  {name:'Shivani Singh', year:2025, url:'https://www.linkedin.com/in/shivaniisiingh/', photo:'11.jpg', logos:['12.png']},
+  {name:'Chen Yifei', year:2021, url:'https://www.linkedin.com/in/yifeich/', photo:'17.jpg', logos:['19.png','21.png','18.png','20.png']},
+  {name:'Satwik Krishna', year:2022, url:'https://www.linkedin.com/in/satwik-kritika-krishna-38282817a/', photo:'06.jpg', logos:['07.png']},
+  {name:'Chuang Ya-Han', year:2024, url:'https://www.linkedin.com/in/yahanchuang-business-analyst/', photo:'13.jpg', logos:['14.png']},
+  {name:'Youssef Braham', year:2021, url:'https://www.linkedin.com/in/youssefbraham/', photo:'22.jpg', logos:['23.png']},
+  {name:'Clément Gauvin', year:2022, url:'https://www.linkedin.com/in/clement-gauvin/', photo:'24.jpg', logos:['25.png']},
+  {name:'Emma Buhot-Launay', year:2026, url:'https://www.linkedin.com/in/emma-buhot-launay/', photo:'emma-buhot-launay.jpg', logos:['27.png']},
+  {name:'Laura Maspero', year:2025, url:'https://www.linkedin.com/in/laura-maspero-840566231/', photo:'laura-maspero.jpg', logos:['05.png']},
+  {name:'Liming Zhuang', year:2026, url:'https://www.linkedin.com/in/liming-zhuang-frm-670aa8191/', photo:'28.jpg', logos:['29.png']},
+];
+// alumni ordered by graduating year, then by name
+const initials = name => name.split(/[ -]/).map(part => part[0]).slice(0, 2).join('');
+document.getElementById('alumni').innerHTML = [...ALUMNI].sort((a, b) => a.year - b.year || a.name.localeCompare(b.name)).map(person => `
+  <div class="panel" style="width:calc((100% - 8.4cqw) / 7);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1cqh;padding:2.4cqh .8cqw">
+    ${person.photo ? `<img src="assets/alumni/${person.photo}" alt="${person.name}" style="width:6.8cqw;height:6.8cqw;object-fit:cover;border-radius:50%">` : `<span aria-hidden="true" style="width:6.8cqw;height:6.8cqw;border-radius:50%;background:var(--lavender-soft);color:var(--violet);display:grid;place-items:center;font:600 2.4cqw var(--serif)">${initials(person.name)}</span>`}
+    <div style="min-width:0">
+      <p style="margin:0;font-size:1.3cqw;line-height:1.2"><a href="${person.url}">${person.name}</a><br><span style="color:var(--muted);font-size:1.2cqw">MBD ${person.year}</span></p>
+      <div style="display:flex;justify-content:center;gap:.4cqw;margin-top:.8cqh">${person.logos.map(logo => `<img src="assets/alumni/${logo}" alt="" style="height:2.3cqw;width:2.3cqw;object-fit:contain;border-radius:.3cqw;background:#fff">`).join('')}</div>
+    </div>
+  </div>`).join('');
+
+// stepped slide: walk through each model layer
+const modelSlide = document.querySelector('.models');
+const MODEL_STEPS = [
+  {pill:'overview', html:'<p class="small" style="margin:0">use → to step through each layer, from raw data to the marts that people query.</p><p class="small" style="margin-top:1cqh">the same layers have other names. Databricks and Microsoft Fabric call them the <a href="https://docs.databricks.com/aws/en/lakehouse/medallion">medallion architecture</a>: bronze, silver and gold. dbt\'s own guide calls them staging, intermediate and marts.</p>'},
+  {pill:'raw_data', html:'<p class="small" style="margin:0">in the extract, load, transform (ELT) framework, <b>raw data</b> is:</p><ul class="dots small" style="margin-top:1cqh"><li>untransformed data from <a href="https://docs.getdbt.com/docs/build/sources">source systems</a> (e.g. <a href="https://fivetran.com/docs">Fivetran</a>, <a href="https://docs.airbyte.com/">Airbyte</a>)</li><li>in any form (parquet, JSON, tabular). most ideally structured.</li><li>good practice: one schema for each source.</li></ul><p class="note" style="margin-top:1cqh">medallion name: <b>bronze</b>, raw data as it was ingested.</p>'},
+  {pill:'staging', html:'<p class="small" style="margin:0">the <a href="https://docs.getdbt.com/best-practices/how-we-structure/2-staging"><b>staging</b></a> layer is meant for data cleaning:</p><ul class="dots small" style="margin-top:1cqh"><li>type casting</li><li>transformations</li><li>renaming columns for standardisation</li></ul><p class="note" style="margin-top:1cqh">medallion name: <b>silver</b>, cleaned and validated, but not yet shaped for a business question.</p>'},
+  {pill:'facts and dimensions', html:'<ul class="dots small"><li>atomic building blocks which data consumers can use to build information.</li><li><b>facts</b> are about business activities that happen. <b>dimensions</b> describe the entities involved in those activities.</li><li>facts and dimensions are typically modelled in a <a href="https://en.wikipedia.org/wiki/Third_normal_form">3NF</a> way.</li><li>consider reading more about <a href="https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/">Kimball</a>\'s dimensional modelling.</li></ul><p class="note" style="margin-top:1cqh">medallion name: <b>gold</b>. Databricks describes gold as the dimensional modelling layer.</p>'},
+  {pill:'marts', html:'<ul class="dots small"><li>the final data set which consumers will use (<a href="https://docs.getdbt.com/best-practices/how-we-structure/4-marts">marts</a>).</li><li>one “wide” table with many columns.</li><li>why? storage is cheaper than compute. the model runs once in the nightly pipeline, so consumers don\'t rerun the same joins when querying the data.</li></ul><p class="note" style="margin-top:1cqh">medallion name: <b>gold</b>, ready for dashboards, analysis and machine learning.</p>'},
+];
+document.getElementById('model-pills').innerHTML = MODEL_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
+function setModels(k){
+  modelSlide.dataset.k = k;
+  modelSlide.querySelectorAll('.pills button').forEach(button => button.classList.toggle('on', +button.dataset.k === k));
+  document.getElementById('model-caption').innerHTML = MODEL_STEPS[k].html;
+  modelSlide.querySelectorAll(`.l${k}`).forEach(layer => { layer.classList.remove('pulse'); void layer.getBBox(); layer.classList.add('pulse'); });
+}
+modelSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setModels(+button.dataset.k));
+modelSlide.step = setModels;
+
+// stepped slide: the model as written, then the SQL that dbt runs
+const compileSlide = document.querySelector('.compile');
+const COMPILE_STEPS = [
+  {pill:'the model I write', caption:'use → to see the SQL that dbt runs.'},
+  {pill:'what dbt runs', caption:'dbt swaps the ref for the full table name, and the config for create or replace view.'},
+];
+document.getElementById('compile-pills').innerHTML = COMPILE_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
+function setCompile(k){
+  compileSlide.dataset.k = k;
+  compileSlide.querySelectorAll('.pills button').forEach(button => button.classList.toggle('on', +button.dataset.k === k));
+  document.getElementById('compile-caption').textContent = COMPILE_STEPS[k].caption;
+}
+compileSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setCompile(+button.dataset.k));
+compileSlide.step = setCompile;
+</script>

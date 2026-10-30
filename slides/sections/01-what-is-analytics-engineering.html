@@ -1,0 +1,209 @@
+<!-- Venn circles shared by the two bridging-the-gap slides -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="venn-base">
+      <circle cx="240" cy="240" r="185" fill="#c7d5eb" fill-opacity=".55" stroke="#233759" stroke-width="1.5" style="mix-blend-mode:multiply"/>
+      <circle cx="500" cy="240" r="185" fill="#ceceff" fill-opacity=".8" stroke="#3b2282" stroke-width="3" style="mix-blend-mode:multiply"/>
+      <circle cx="760" cy="240" r="185" fill="#c7d5eb" fill-opacity=".55" stroke="#233759" stroke-width="1.5" style="mix-blend-mode:multiply"/>
+      <text x="200" y="34" style="font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle">data engineers</text>
+      <text x="500" y="34" style="font:700 22px Inter,sans-serif;fill:#3b2282;text-anchor:middle">analytics engineers</text>
+      <text x="800" y="34" style="font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle">data analysts</text>
+    </g>
+  </defs>
+</svg>
+<style>
+.venn .q{font:500 16px Inter,sans-serif;fill:#111;text-anchor:middle}
+.venn .q.shared{font-weight:700;font-size:15px;fill:#3b2282}
+</style>
+
+<!-- divider 01 -->
+<section class="slide navy">
+  <svg class="net" aria-hidden="true" style="opacity:.6"></svg>
+  <div class="pad" style="top:34cqh">
+    <div class="kicker">section 01</div>
+    <h1 style="margin-top:2cqh">what is analytics engineering?</h1>
+  </div>
+  <img src="assets/escp.png" alt="ESCP Business School" style="position:absolute;left:3.6cqw;bottom:5cqh;height:6cqh;filter:brightness(0) invert(1)">
+</section>
+
+<!-- what does a data professional do -->
+<section class="slide statement">
+  <div class="pad">
+    <h1 style="font-size:5.6cqw;line-height:1.35">what do you think a <span class="uline">data professional<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path class="vline" pathLength="1" d="M4 16 C 90 6, 210 4, 296 10 C 230 14, 130 20, 40 26" stroke="var(--peach)" stroke-width="7"/></svg></span> does?</h1>
+  </div>
+</section>
+
+<!-- quiz -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>let's have a quiz</h2>
+  <p class="sub">which data role does each description belong to?</p>
+  <div class="body" style="max-width:48cqw;margin-top:7cqh">
+    <p>you'll be shown a role description. pick the role you think it describes.</p>
+    <p style="margin-top:4cqh;font-size:2.4cqw"><a href="https://forms.gle/RWZB1BUbVNeGLYxL8">forms.gle/RWZB1BUbVNeGLYxL8</a></p>
+  </div>
+  <img src="assets/quiz-qr.png" alt="QR code for the quiz form" style="position:absolute;right:5cqw;top:14cqh;width:28cqw;border-radius:1.4cqw;box-shadow:0 .4cqw 1.6cqw rgba(35,55,89,.18)">
+  <div class="sticker round" style="right:35cqw;top:40cqh;width:12cqw;background:var(--lemon);font-size:2.6cqw;--rot:-10deg">quiz!</div>
+</div></div></section>
+
+<!-- modern data stack -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>the “modern” data stack is an extract, load, transform (ELT) process</h2>
+  <div class="fill body"><img src="assets/elt-stack.png" alt="the ELT stack: data sources such as Salesforce, SAP and Snowplow flow through extract (Python, Fivetran), load (Airflow, Dagster), store (BigQuery, Snowflake, Azure) and transform (dbt, SQL), then leverage (Dataiku, R, Kubeflow) into data products such as Looker, Tableau and Power BI, with govern (Alation, GDPR) underneath. engineers own extract, load and store, analytics engineers own transform, analysts and scientists own leverage, and managers own govern."></div>
+</div><div class="refs"><span>read more</span><a href="https://en.wikipedia.org/wiki/Extract,_load,_transform">ELT</a><a href="https://fivetran.com/docs">Fivetran</a><a href="https://airflow.apache.org/docs/">Airflow</a><a href="https://docs.getdbt.com/docs/introduction">dbt</a></div></div></section>
+
+<!-- ill-defined role -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>the ill-defined data analytics role</h2>
+  <div class="body" style="position:relative" role="img" aria-label="overlapping boxes for data roles: research scientist, data scientist, machine learning engineer, analytics engineer, data analyst, BI analyst, BI engineer and data engineer, showing that the roles blur into each other">
+    <div class="role" style="left:14%;top:2%;width:22%;height:17%;background:var(--mist);color:var(--navy);justify-content:flex-start;padding-left:1.4cqw">research scientist</div>
+    <div class="role" style="left:30%;top:10%;width:32%;height:32%;background:var(--lavender-soft);color:var(--navy);align-items:flex-start;padding-top:2.4cqh">data scientist</div>
+    <div class="role" style="left:6%;top:28%;width:30%;height:56%;background:var(--navy);color:var(--white);justify-content:flex-start;padding-left:2cqw">data analyst</div>
+    <div class="role" style="left:57%;top:36%;width:25%;height:40%;background:var(--steel);color:var(--navy);align-items:flex-end;padding-bottom:3cqh">data engineer</div>
+    <div class="role" style="left:60%;top:25%;width:26%;height:17%;background:var(--lavender);color:var(--white)">machine learning engineer</div>
+    <div class="role" style="left:41%;top:46%;width:16%;height:16%;background:var(--navy-deep);color:var(--white);align-items:flex-end;padding-bottom:.8cqh">BI engineer</div>
+    <div class="role" style="left:39%;top:34%;width:20%;height:18%;background:var(--violet);color:var(--white)">analytics engineer</div>
+    <div class="role" style="left:30%;top:45%;width:12%;height:17%;background:var(--white);color:var(--navy);border:.15cqw solid var(--navy)">BI analyst</div>
+  </div>
+</div></div></section>
+
+<!-- roles meme -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <div class="fill" style="--cap:80cqh"><img class="shot" src="assets/roles-meme.jpg" alt="meme: an old man points at a small elephant labelled analytics engineer, next to a large elephant labelled data analyst and a penguin labelled data engineer, asking what the hell is this"></div>
+</div></div></section>
+
+<!-- bridging the gap: questions -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>bridging the gap between data engineers and analysts</h2>
+  <p class="sub">the questions each role asks, and where they overlap</p>
+  <svg class="venn body" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram of data engineers, analytics engineers and data analysts, with the questions each role asks and the two shared questions in the overlaps" style="width:100%">
+    <use href="#venn-base"/>
+    <text class="q" x="165" y="175"><tspan x="165">how can we get data</tspan><tspan x="165" dy="20">from one system</tspan><tspan x="165" dy="20">to another?</tspan></text>
+    <text class="q" x="165" y="290"><tspan x="165">how should we</tspan><tspan x="165" dy="20">allocate resources</tspan><tspan x="165" dy="20">for jobs to run?</tspan></text>
+    <text class="q shared" x="370" y="225"><tspan x="370">when</tspan><tspan x="370" dy="20">should we</tspan><tspan x="370" dy="20">run the job?</tspan></text>
+    <text class="q" x="500" y="175"><tspan x="500">how do we</tspan><tspan x="500" dy="20">optimise</tspan><tspan x="500" dy="20">usage costs?</tspan></text>
+    <text class="q" x="500" y="290"><tspan x="500">what is the</tspan><tspan x="500" dy="20">right way to</tspan><tspan x="500" dy="20">document this?</tspan></text>
+    <text class="q shared" x="630" y="225"><tspan x="630">how do we</tspan><tspan x="630" dy="20">ensure</tspan><tspan x="630" dy="20">data quality?</tspan></text>
+    <text class="q" x="835" y="175"><tspan x="835">what is the reason</tspan><tspan x="835" dy="20">for the revenue</tspan><tspan x="835" dy="20">increase or decrease?</tspan></text>
+    <text class="q" x="835" y="290"><tspan x="835">how can we test the</tspan><tspan x="835" dy="20">statistical significance</tspan><tspan x="835" dy="20">of this change?</tspan></text>
+  </svg>
+</div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/blog/what-is-analytics-engineering">what is analytics engineering</a></div></div></section>
+
+<!-- bridging the gap: what each role brings -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>bridging the gap between data engineers and analysts</h2>
+  <p class="sub">what each role brings</p>
+  <svg class="venn body" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram: data engineers build and maintain infrastructure; analytics engineers share software engineering practices with data engineers and an analytical, business-outcomes mindset with data analysts; data analysts use data to answer questions" style="width:100%">
+    <use href="#venn-base"/>
+    <text class="q" x="165" y="225"><tspan x="165">builds and maintains</tspan><tspan x="165" dy="20">infrastructure for</tspan><tspan x="165" dy="20">data applications</tspan></text>
+    <text class="q shared" x="370" y="205" style="font-size:14px"><tspan x="370">introduces</tspan><tspan x="370" dy="18">good</tspan><tspan x="370" dy="18">software</tspan><tspan x="370" dy="18">engineering</tspan><tspan x="370" dy="18">practices</tspan></text>
+    <text class="q shared" x="630" y="205" style="font-size:14px"><tspan x="630">brings an</tspan><tspan x="630" dy="18">analytical</tspan><tspan x="630" dy="18">and business-</tspan><tspan x="630" dy="18">outcomes</tspan><tspan x="630" dy="18">mindset</tspan></text>
+    <text class="q" x="835" y="225"><tspan x="835">uses data to answer</tspan><tspan x="835" dy="20">questions and</tspan><tspan x="835" dy="20">solve problems</tspan></text>
+  </svg>
+</div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/blog/what-is-analytics-engineering">what is analytics engineering</a></div></div></section>
+
+<!-- commonalities -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>commonalities in the definitions of an analytics engineer</h2>
+  <p class="sub">share of 1,128 job ads from 970 companies, april–october 2026, that ask for each</p>
+  <div class="cols c3 body" style="grid-auto-rows:1fr;margin-top:2.5cqh;margin-bottom:1.5cqh">
+    <div class="panel"><div class="k">75%</div><p>provides clean data sets to end-users.</p><p class="note">model and transform data</p></div>
+    <div class="panel"><div class="k">74%</div><p>bridge between business and data engineering.</p><p class="note">collaborate with stakeholders, gather requirements</p></div>
+    <div class="panel"><div class="k">72%</div><p>transforms, tests, deploys and documents data.</p><p class="note">test and monitor data quality. 63% ask for documentation</p></div>
+    <div class="panel"><div class="k">43%</div><p>applies software engineering best practices, like version control and continuous integration, to the analytics code base.</p><p class="note">name version control or CI/CD</p></div>
+    <div class="panel"><div class="k">35%</div><p>models data so end-users can answer their own questions, by improving the accessibility and reliability of data products.</p><p class="note">enable self-service and data literacy</p></div>
+    <div class="panel"><div class="k">12%</div><p>implements standardised access control and privacy guidelines.</p><p class="note">own security, privacy and risk</p></div>
+  </div>
+  <p class="note">source: <a href="https://github.com/jeremychia/analytics-engineers-job-descriptions">analytics-engineers-job-descriptions</a>. duties are matched to themes by keyword, so shares are approximate.</p>
+</div></div></section>
+
+<!-- all duty themes -->
+<section id="duty-themes" class="slide card"><div class="sheet"><div class="pad">
+  <h2>dashboards top the job ads, yet no definition mentions them</h2>
+  <p class="sub">share of 1,128 ads with at least one duty in each theme</p>
+  <div class="cols body chart-cols">
+    <svg class="bars" id="theme-bars" role="img" aria-label="bar chart of duty themes by share of job ads: dashboards and reporting 76%, data modelling and transformation 75%, working with stakeholders 74%, data quality and testing 72%, governance and documentation 63%, pipelines and orchestration 58%, business analysis and insight 57%, warehouse and infrastructure 54%, performance and cost 47%, architecture and platform strategy 42%, end-to-end data ownership 36%, self-service and data literacy 35%, AI and agentic workflows 33%, mentoring and leadership 16%, security, privacy and risk 12%, vendor and tool evaluation 3%" style="width:100%;height:100%"></svg>
+    <div style="display:grid;gap:2cqh">
+      <p class="small"><span class="swatch" style="background:var(--violet)"></span>in the definitions on the previous slide</p>
+      <p class="small"><span class="swatch" style="background:var(--steel)"></span>not in the definitions</p>
+      <p class="small"><span class="swatch" style="background:var(--peach)"></span>not in the definitions, yet the most common</p>
+      <div class="panel" style="background:var(--lavender-soft)"><p style="margin:0">three in four ads ask for dashboards and reporting, which the definitions leave out.</p></div>
+      <div class="panel"><p style="margin:0">privacy is in the definitions, but only one ad in eight asks for it.</p></div>
+    </div>
+  </div>
+  <p class="note">source: <a href="https://github.com/jeremychia/analytics-engineers-job-descriptions">analytics-engineers-job-descriptions</a>. one duty can count towards several themes.</p>
+</div></div></section>
+
+<!-- duties in the ads' own words -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>in their own words: duties copied from real job ads</h2>
+  <div class="cols c3 body quotes" style="grid-auto-rows:1fr">
+    <div class="panel"><div class="k">76%</div><p class="small"><b>dashboards and reporting</b></p><blockquote>“Build automated dashboards and self-service data products that replace manual reporting.”</blockquote><p class="note"><a href="https://job-boards.greenhouse.io/celonis/jobs/7986348003">Celonis</a></p></div>
+    <div class="panel"><div class="k">75%</div><p class="small"><b>data modelling</b></p><blockquote>“Model and transform data into consistent analytical structures”</blockquote><p class="note"><a href="https://www.buscojobs.pt/senior-analytics-engineers-mid-analytics-engineers-ID-26089604">Irium Portugal</a></p></div>
+    <div class="panel"><div class="k">74%</div><p class="small"><b>working with stakeholders</b></p><blockquote>“Resolve conflicting definitions through structured analysis and stakeholder alignment”</blockquote><p class="note"><a href="https://www.linkedin.com/jobs/view/4474472314/">Quickbase</a></p></div>
+    <div class="panel"><div class="k">72%</div><p class="small"><b>data quality and testing</b></p><blockquote>“Monitor data quality across systems, so data arrives complete and accurate.”</blockquote><p class="note"><a href="https://job-boards.eu.greenhouse.io/tekla/jobs/4990705101">Tekla</a></p></div>
+    <div class="panel"><div class="k">35%</div><p class="small"><b>self-service and data literacy</b></p><blockquote>“Educate and empower others at the company to be more self-reliant for their data needs”</blockquote><p class="note"><a href="https://jobs.tiqets.work/analytics-engineer/en">Tiqets</a></p></div>
+    <div class="panel"><div class="k">33%</div><p class="small"><b>AI and agentic workflows</b></p><blockquote>“Act as a steward of the analytical truth layer for both human decision-makers and AI systems.”</blockquote><p class="note"><a href="https://www.linkedin.com/jobs/view/4454730837/">BankX</a></p></div>
+  </div>
+</div></div></section>
+
+<!-- tools named in the ads -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>SQL is in almost every ad, and dbt is in six of ten</h2>
+  <p class="sub">share of 1,128 ads that name each tool or practice</p>
+  <div class="cols body chart-cols">
+    <svg class="bars" id="tool-bars" role="img" aria-label="bar chart of tools named in job ads: SQL 95%, Python 64%, dbt 60%, Power BI 40%, Snowflake 37%, version control 37%, BigQuery 28%, Tableau 28%, CI/CD 27%, semantic layer 24%, Looker 24%, Airflow 23%, Databricks 23%" style="width:100%;height:100%"></svg>
+    <div style="display:grid;gap:2cqh">
+      <div class="panel" style="background:var(--lavender-soft)"><p style="margin:0">SQL is the one skill almost every ad expects. dbt, which section 04 covers, is the third most named.</p></div>
+      <div class="panel"><p style="margin:0">no single warehouse or dashboard tool dominates. Power BI leads the dashboard tools at 40%.</p></div>
+    </div>
+  </div>
+  <p class="note">source: <a href="https://github.com/jeremychia/analytics-engineers-job-descriptions">analytics-engineers-job-descriptions</a></p>
+</div></div></section>
+
+<!-- who the ads hire -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>half the ads hire mid-level, and one in twenty is junior</h2>
+  <p class="sub">share of 1,128 job ads</p>
+  <div class="body stacks">
+    <div>
+      <p class="small"><b>level in the job title</b></p>
+      <div class="stack"><span style="width:5.1%;background:var(--peach)"></span><span style="width:47.1%;background:var(--violet);color:var(--white)">mid 47%</span><span style="width:38.9%;background:var(--steel)">senior 39%</span><span style="width:8.9%;background:var(--navy)"></span></div>
+      <p class="note"><span class="swatch" style="background:var(--peach)"></span>junior 5% <span class="swatch" style="background:var(--navy)"></span>lead, staff or manager 9%</p>
+    </div>
+    <div>
+      <p class="small"><b>what the ad stresses</b></p>
+      <div class="stack"><span style="width:79.9%;background:var(--violet);color:var(--white)">getting the numbers right 80%</span><span style="width:17.3%;background:var(--steel)">both 17%</span><span style="width:2.8%;background:var(--peach)"></span></div>
+      <p class="note"><span class="swatch" style="background:var(--peach)"></span>shipping fast 3%</p>
+    </div>
+    <div>
+      <p class="small"><b>what the ad says about AI</b></p>
+      <div class="stack"><span style="width:57.4%;background:var(--mist);border:.15cqw solid var(--line)">no AI expected 57%</span><span style="width:14.9%;background:var(--steel)">uses AI 15%</span><span style="width:27.7%;background:var(--violet);color:var(--white)">builds data for AI 28%</span></div>
+      <p class="note">"uses AI" means AI tools in daily work. "builds data for AI" means preparing data that AI systems read.</p>
+    </div>
+  </div>
+  <p class="note">source: <a href="https://github.com/jeremychia/analytics-engineers-job-descriptions">analytics-engineers-job-descriptions</a>. each ad was read as a whole, not only its duties.</p>
+</div></div></section>
+<script>
+// horizontal bar charts of job ad shares; tone 'on' marks a highlighted bar, 'hot' the one the title is about
+function drawBars(svg, rows){
+  const width = 800, rowHeight = 28, labelWidth = 290, barStart = labelWidth + 12, barSpace = width - barStart - 56;
+  svg.setAttribute('viewBox', `0 0 ${width} ${rows.length * rowHeight}`);
+  svg.innerHTML = rows.map(([label, share, tone = ''], index) => {
+    const middle = index * rowHeight + rowHeight / 2, length = barSpace * share / 100;
+    return `<text class="lbl" x="${labelWidth}" y="${middle}">${label}</text>`
+      + `<rect class="bar ${tone}" style="--bar:${index}" x="${barStart}" y="${middle - 10}" width="${length}" height="20" rx="4"/>`
+      + `<text class="val ${tone}" x="${barStart + length + 8}" y="${middle}">${share}%</text>`;
+  }).join('');
+}
+drawBars(document.getElementById('theme-bars'), [
+  ['dashboards and reporting', 76, 'hot'], ['data modelling and transformation', 75, 'on'], ['working with stakeholders', 74, 'on'],
+  ['data quality and testing', 72, 'on'], ['governance and documentation', 63, 'on'], ['pipelines and orchestration', 58],
+  ['business analysis and insight', 57], ['warehouse and infrastructure', 54], ['performance and cost', 47],
+  ['architecture and platform strategy', 42], ['end-to-end data ownership', 36], ['self-service and data literacy', 35, 'on'],
+  ['AI and agentic workflows', 33], ['mentoring and leadership', 16], ['security, privacy and risk', 12, 'on'], ['vendor and tool evaluation', 3],
+]);
+drawBars(document.getElementById('tool-bars'), [
+  ['SQL', 95, 'on'], ['Python', 64], ['dbt', 60, 'on'], ['Power BI', 40], ['Snowflake', 37], ['version control (Git)', 37], ['BigQuery', 28],
+  ['Tableau', 28], ['CI/CD', 27], ['semantic layer', 24], ['Looker', 24], ['Airflow', 23], ['Databricks', 23],
+]);
+</script>
