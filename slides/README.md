@@ -4,9 +4,14 @@ The deck for the Introduction to Analytics Engineering session. It is published 
 
 ## build and present
 
+Run these from the repo root.
+
 - [ ] Run `python3 slides/build.py`.
-- [ ] Open `slides/dist/index.html` in a browser. It works offline.
-- [ ] Use → and ← to move through the slides, or add `#12` to the URL to jump to slide 12.
+- [ ] Serve the built deck with `python3 -m http.server 8000 --directory slides/dist`. Opening `index.html` straight from disk can leave the photos blank.
+- [ ] Open http://localhost:8000 in a browser. It works offline.
+- [ ] Use → and ← to move through the slides, or add `#12` to the URL to jump to slide 12. On a stepped slide, → steps through it first.
+- [ ] After each edit, run the build again and reload the page. The server can stay running.
+- [ ] Stop the server with Ctrl+C when you're done.
 
 ## where things live
 
