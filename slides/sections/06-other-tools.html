@@ -9,15 +9,21 @@
 </section>
 
 <!-- tools evolve, frameworks endure -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>tools evolve, frameworks endure</h2>
-  <div class="cols body" style="grid-template-columns:2fr 3fr;align-items:center">
+  <div class="cols body" style="grid-template-columns:1.3fr 3fr;align-items:center">
     <div style="display:grid;gap:2.4cqh">
       <p>start with a <b>problem statement</b> first.</p>
       <p>think in terms of <b>frameworks</b>, then look at the tool.</p>
       <p>here are some open-source tools for analytics engineering and peripheral tasks.</p>
+      <div class="pills">
+        <button data-caption="start from the job to be done: collecting, storing, streaming, orchestrating, cataloguing or presenting data. use → to go deeper.">jobs</button>
+        <button data-caption="each job splits into layers. a data lake, for example, needs compute, metadata, file and storage layers.">layers</button>
+        <button data-caption="only then pick a tool for each layer. most layers have several open-source options.">tools</button>
+      </div>
+      <p class="note caption"></p>
     </div>
-    <div class="fill"><img style="max-height:64cqh" src="assets/tools-landscape.png" alt="a landscape of open-source data tools grouped by collection and integration, data lake, data warehouses, streaming, orchestration, data catalogs, and BI and data apps"></div>
+    <div class="fill" style="align-self:stretch"><svg class="dgm" id="landscape" role="img" aria-label="a landscape of open-source data tools, grouped by job, then layer, then tool: collection and integration, data lake, data warehouses, streaming, orchestration, data catalogs, and BI and data apps"></svg></div>
   </div>
 </div></div></section>
 
@@ -111,3 +117,37 @@
     <li><a href="https://www.youtube.com/watch?v=nxy3yqe_6Xs">Expanding the Data Team: Analytics Engineers</a> (video) by Victoria Perez Mola</li>
   </ul>
 </div></div></section>
+<script>
+// open-source tools as a tree of job, then layer, then tool; a job with no layers lists its tools directly
+(function drawLandscape(){
+  const svg = document.getElementById('landscape');
+  const LANDSCAPE = [
+    ['collection + integration', [['event processing', 'Jitsu, RudderStack, Snowplow'], ['integration + reverse ETL', 'Airbyte, Meltano, dlt']]],
+    ['data lake', [['compute, in-process', 'DuckDB, Polars, Pandas'], ['compute, distributed', 'Spark, Trino'], ['metadata', 'Iceberg, Delta Lake, Hive Metastore'], ['files', 'Parquet, Avro'], ['storage', 'MinIO']]],
+    ['data warehouses', [[null, 'Hydra, ClickHouse']]],
+    ['streaming', [[null, 'Spark, Flink, Materialize']]],
+    ['orchestration', [['SQL-centric', 'dbt, SQLMesh'], ['polyglot', 'Dagster, Airflow, Mage, Prefect']]],
+    ['data catalogs', [[null, 'Amundsen, DataHub']]],
+    ['BI and data apps', [['notebooks', 'Jupyter, Querybook, Evidence'], ['self-serve dashboards', 'Lightdash, Superset, Metabase'], ['code-first apps', 'Plotly Dash, Observable, Streamlit'], ['product analytics', 'PostHog, Plausible']]],
+  ];
+  const rowHeight = 30, gap = 14, jobWidth = 200, layerX = 240, layerWidth = 230, toolX = layerX + layerWidth + 26;
+  const curve = (x1, y1, x2, y2) => `M${x1} ${y1} C${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`;
+  let top = 0, markup = '';
+  LANDSCAPE.forEach(([job, layers]) => {
+    const middle = top + layers.length * rowHeight / 2;
+    layers.forEach(([layer, tools], index) => {
+      const y = top + index * rowHeight + rowHeight / 2;
+      if (layer) {
+        markup += `<g data-from="1"><path class="edge" d="${curve(jobWidth, middle, layerX, y)}"/><rect class="box" x="${layerX}" y="${y - 12}" width="${layerWidth}" height="24" rx="12" style="stroke-width:1.5"/><text class="tool" x="${layerX + layerWidth / 2}" y="${y}">${layer}</text></g>`;
+        markup += `<g data-from="2"><path class="edge" d="M${layerX + layerWidth} ${y} H${toolX - 6}"/><text class="col" x="${toolX}" y="${y}">${tools}</text></g>`;
+      } else {
+        markup += `<g data-from="2"><path class="edge" d="${curve(jobWidth, middle, layerX - 6, y)}"/><text class="col" x="${layerX}" y="${y}">${tools}</text></g>`;
+      }
+    });
+    markup += `<rect class="solid" x="0" y="${top + 3}" width="${jobWidth}" height="${layers.length * rowHeight - 6}" rx="10"/><text x="${jobWidth / 2}" y="${middle}" style="font-size:17px">${job}</text>`;
+    top += layers.length * rowHeight + gap;
+  });
+  svg.setAttribute('viewBox', `-2 -2 790 ${top - gap + 4}`);
+  svg.innerHTML = markup;
+})();
+</script>
