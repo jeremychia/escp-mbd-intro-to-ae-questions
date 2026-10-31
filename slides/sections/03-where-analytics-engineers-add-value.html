@@ -35,17 +35,45 @@
 </div></div></section>
 
 <!-- well-modelled data -->
-<section id="well-modelled" class="slide card"><div class="sheet"><div class="pad">
+<section id="well-modelled" class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>well-modelled data enables faster data mining cycles</h2>
   <div class="cols body" style="grid-template-columns:2fr 3fr;align-items:center">
-    <div class="fill"><img src="assets/crisp-dm.png" alt="the CRISP-DM cycle: business understanding, data understanding, data preparation, modelling, evaluation and deployment around a data store"></div>
+    <div class="fill">
+      <svg class="dgm" viewBox="0 0 600 600" role="img" aria-label="the CRISP-DM cycle: business understanding and data understanding feed each other, then data preparation and modelling feed each other, then evaluation either loops back to business understanding or moves on to deployment, all around the data">
+          <defs><marker id="crisp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#233759"/></marker></defs>
+          <g data-in="4"><path class="edge" d="M300 15 A285 285 0 0 1 585 300" marker-end="url(#crisp-arrow)"/><path class="edge" d="M585 300 A285 285 0 0 1 300 585" marker-end="url(#crisp-arrow)"/><path class="edge" d="M300 585 A285 285 0 0 1 15 300" marker-end="url(#crisp-arrow)"/><path class="edge" d="M15 300 A285 285 0 0 1 300 15" marker-end="url(#crisp-arrow)"/></g>
+          <g aria-hidden="true"><path d="M230 272 V322 A40 12 0 0 0 310 322 V272" fill="#f7f7f7" stroke="#233759" stroke-width="2"/><ellipse cx="270" cy="272" rx="40" ry="12" fill="#f7f7f7" stroke="#233759" stroke-width="2"/><path d="M230 297 A40 12 0 0 0 310 297" fill="none" stroke="#233759" stroke-width="2"/><text class="lbl" x="270" y="356">data</text></g>
+          <path class="edge" data-in="1 2" d="M285 128 H311" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="1 2" d="M315 152 H289" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="3" d="M440 172 Q 470 195 472 226" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="4" d="M458 294 V342" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="4" d="M482 346 V298" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="4" d="M450 410 Q 425 452 394 468" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="4" d="M330 456 C 395 380, 370 250, 228 176" marker-end="url(#crisp-arrow)"/>
+          <path class="edge" data-in="4" d="M210 484 Q 130 455 120 336" marker-end="url(#crisp-arrow)"/>
+          <g class="node" data-in="1"><rect class="box" x="105" y="108" width="180" height="64" rx="14"/><text x="195" y="129">business</text><text x="195" y="151">understanding</text></g>
+          <g class="node" data-in="2"><rect class="box" x="315" y="108" width="180" height="64" rx="14"/><text x="405" y="129">data</text><text x="405" y="151">understanding</text></g>
+          <g class="node" data-in="3"><rect class="box" x="380" y="230" width="180" height="64" rx="14"/><text x="470" y="251">data</text><text x="470" y="273">preparation</text></g>
+          <g class="node" data-in="4"><rect class="box" x="380" y="346" width="180" height="64" rx="14"/><text x="470" y="378">modelling</text></g>
+          <g class="node" data-in="4"><rect class="box" x="210" y="458" width="180" height="64" rx="14"/><text x="300" y="490">evaluation</text></g>
+          <g class="node" data-in="4"><rect class="box" x="35" y="268" width="170" height="64" rx="14"/><text x="120" y="300">deployment</text></g>
+        </svg>
+    </div>
     <div>
-      <p>the analytics engineer takes on much of the first steps when modelling (structuring) the datasets. if done right, there is a <b>significantly reduced workload</b> when performing data mining, as the datasets used are:</p>
+      <div class="pills">
+        <button data-caption="use → to see which phases well-modelled data speeds up.">overview</button>
+        <button data-caption="documented models say what each column means, so less time goes on asking around.">business</button>
+        <button data-caption="a clear project structure makes the right table easy to find.">data</button>
+        <button data-caption="tested, cleaned models leave little to clean before modelling starts.">preparation</button>
+        <button data-caption="evaluation often sends you back to business understanding. every loop reuses the same modelled data.">the loop</button>
+      </div>
+      <p style="margin-top:2.4cqh">the analytics engineer takes on much of the first steps when modelling (structuring) the datasets. if done right, there is a <b>significantly reduced workload</b> when performing data mining, as the datasets used are:</p>
       <ul class="dots" style="margin-top:2.4cqh">
-        <li><b>contextualised</b> (ease of business understanding)</li>
-        <li><b>easily discoverable</b> (facilitates data understanding)</li>
-        <li><b>reliable</b> (good data quality; less data preparation, such as cleaning and formatting)</li>
+        <li data-in="1"><b>contextualised</b> (ease of business understanding)</li>
+        <li data-in="2"><b>easily discoverable</b> (facilitates data understanding)</li>
+        <li data-in="3"><b>reliable</b> (good data quality; less data preparation, such as cleaning and formatting)</li>
       </ul>
+      <p class="note caption" style="margin-top:2.4cqh"></p>
     </div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP-DM</a></div></div></section>
@@ -65,7 +93,49 @@
 </div></div></section>
 
 <!-- ADLC -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>encapsulated in the analytics development lifecycle</h2>
-  <div class="fill body"><img src="assets/adlc.png" alt="the analytics development lifecycle as an infinity loop: data (develop, test, deploy, plan) and ops (operate, observe, discover, analyze)"></div>
+  <div class="pills" style="margin-top:2.4cqh">
+    <button data-caption="use → to go round each half of the loop.">overview</button>
+    <button data-caption="plan, develop, test and deploy: the analytics engineer builds and ships a change, the way software engineers do.">build</button>
+    <button data-caption="operate, observe, discover and analyse: the change runs in production and people use the data. what they learn starts the next plan.">use</button>
+  </div>
+  <div class="fill" style="margin-top:2cqh"><svg class="dgm" id="adlc" role="img" aria-label="the analytics development lifecycle as an infinity loop. the left loop builds a change: plan, develop, test, deploy. the right loop uses it: operate, observe, discover, analyse, which leads back to plan"></svg></div>
+  <p class="note caption" style="margin-top:1.4cqh"></p>
 </div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/resources/the-analytics-development-lifecycle">the analytics development lifecycle</a></div></div></section>
+<script>
+// the analytics development lifecycle as a figure of eight: the left loop builds a change, the right loop uses it
+(function drawLifecycle(){
+  const svg = document.getElementById('adlc');
+  const centreX = 500, centreY = 200, reach = 430, band = 66;
+  svg.setAttribute('viewBox', '0 0 1000 400');
+  // a lemniscate: t from π/2 to 3π/2 traces the left loop from the crossing, and 3π/2 to 5π/2 the right loop
+  const point = t => { const squash = 1 + Math.sin(t) ** 2; return [centreX + reach * Math.cos(t) / squash, centreY + reach * Math.sin(t) * Math.cos(t) / squash]; };
+  const trace = (from, to) => Array.from({length: 81}, (_, index) => point(from + (to - from) * index / 80)).map(([x, y], index) => `${index ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
+  const angle = t => { const [x1, y1] = point(t - 0.001), [x2, y2] = point(t + 0.001); let degrees = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI; if (degrees > 90) degrees -= 180; if (degrees < -90) degrees += 180; return degrees; };
+  // each half fades from violet at its outer edge to orange at the crossing, as in the original artwork
+  const HALVES = [
+    {step: 1, from: Math.PI / 2, name: 'data', stages: ['plan', 'develop', 'test', 'deploy'], stops: ['#8f7cf7', '#ceceff', '#ff8a3d']},
+    {step: 2, from: 3 * Math.PI / 2, name: 'ops', stages: ['operate', 'observe', 'discover', 'analyse'], stops: ['#ff8a3d', '#ceceff', '#8f7cf7']},
+  ];
+  const gradients = HALVES.map(half => `<linearGradient id="adlc-${half.name}" x1="0" x2="1">${half.stops.map((colour, index) => `<stop offset="${[0, 0.55, 1][index]}" stop-color="${colour}"/>`).join('')}</linearGradient>`).join('');
+  // each half is clipped at the crossing, so the two meet on a straight seam
+  const clips = HALVES.map((half, index) => `<clipPath id="adlc-clip-${half.name}"><rect x="${index * centreX}" y="0" width="${centreX}" height="400"/></clipPath>`).join('');
+  svg.innerHTML = `<defs>${gradients}${clips}</defs>` + HALVES.map(half => {
+    const to = half.from + Math.PI, quarter = Math.PI / 4, path = trace(half.from, to);
+    const dividers = [1, 2, 3].map(index => {
+      const t = half.from + index * quarter, [x, y] = point(t), radians = angle(t) * Math.PI / 180;
+      const [normalX, normalY] = [-Math.sin(radians) * band / 2, Math.cos(radians) * band / 2];
+      return `<line x1="${(x - normalX).toFixed(1)}" y1="${(y - normalY).toFixed(1)}" x2="${(x + normalX).toFixed(1)}" y2="${(y + normalY).toFixed(1)}" stroke="#fff" stroke-width="3"/>`;
+    }).join('');
+    const labels = half.stages.map((stage, index) => {
+      const t = half.from + (index + 0.5) * quarter, [x, y] = point(t);
+      return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" transform="rotate(${angle(t).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})" style="font-size:21px;font-weight:700">${stage}</text>`;
+    }).join('');
+    const [loopX] = point(half.from + Math.PI / 2);
+    const centre = `<text x="${(centreX + (loopX - centreX) * 0.55).toFixed(1)}" y="${centreY}" style="font-size:38px;font-weight:800">${half.name}</text>`;
+    // the band runs a little past the crossing at both ends, so the two halves join without a notch
+    return `<g data-in="${half.step}"><path class="band" style="stroke:url(#adlc-${half.name})" clip-path="url(#adlc-clip-${half.name})" d="${trace(half.from - 0.12, to + 0.12)}"/>${dividers}${labels}${centre}<circle class="runner" r="9"><animateMotion dur="4s" repeatCount="indefinite" path="${path}"/></circle></g>`;
+  }).join('');
+})();
+</script>

@@ -218,6 +218,43 @@ ol.nums li::marker{color:var(--accent);font-weight:700}
 .models .medal-text{font:700 15px Inter,sans-serif;fill:#233759}
 .models[data-k="3"] .layer.l3,.models[data-k="4"] .layer.l4{opacity:1}
 
+/* stepped diagrams: parts in the current step are lavender, the rest fade, and parts with data-from appear at their step */
+.fill>.dgm{width:100%;height:100%}
+.dgm{display:block;overflow:visible}
+.dgm text{font:600 18px Inter,sans-serif;fill:var(--navy);text-anchor:middle;dominant-baseline:middle}
+.dgm .tool{font-weight:500;font-size:16px}
+.dgm .lbl{font-weight:500;font-size:15px;fill:var(--muted)}
+.dgm .head{font-weight:700;font-size:14px;letter-spacing:.08em;fill:var(--muted)}
+.dgm .box{fill:var(--white);stroke:var(--navy);stroke-width:2;transition:fill .3s,stroke .3s}
+.dgm .zone{fill:var(--mist);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.dgm .solid{fill:var(--navy);stroke:none;transition:fill .3s}
+.dgm .solid+text{fill:var(--white)}
+.dgm .reach{stroke:var(--peach);stroke-width:2.5;stroke-dasharray:2 6;stroke-linecap:round;fill:none}
+.dgm .band{stroke-width:66;fill:none}
+.dgm .runner{fill:var(--navy);opacity:0}
+.dgm .focus .runner{opacity:1}
+.stepped [data-in],.stepped [data-from]{transition:opacity .35s}
+.stepped .dim{opacity:.2}
+.stepped .later{opacity:0}
+.dgm .focus .box,.dgm .box.focus{fill:var(--lavender-soft);stroke:var(--violet);stroke-width:3}
+.dgm .focus .zone{fill:var(--lavender-soft);stroke:var(--lavender)}
+.dgm .focus .solid{fill:var(--violet)}
+.dgm .focus .edge,.dgm .edge.focus{stroke:var(--violet);stroke-dasharray:7 6;animation:march .9s linear infinite}
+.dgm .node{transform-box:fill-box;transform-origin:center}
+.dgm .node.pulse{animation:pulse .6s ease-out}
+@keyframes march{to{stroke-dashoffset:-13}}
+/* tool chips and role avatars inside diagrams: a white pill with the tool's mark and name, and a round portrait per role */
+.dgm .chip-box{fill:var(--white);stroke:var(--line);stroke-width:1.5}
+.dgm .chip-name{text-anchor:start;font-weight:500;font-size:14px}
+.dgm .avatar-ring{fill:none;stroke:var(--line);stroke-width:2;transition:stroke .3s}
+.dgm .focus .avatar-ring{stroke:var(--violet)}
+.caption{min-height:2.9em;font-size:1.4cqw;color:var(--navy)}
+/* star schema: on the keys step the tables go back to white and the key columns turn violet */
+.dgm .col{text-anchor:start;font-weight:500;font-size:16px}
+.dgm .badge{font-weight:700;font-size:12px;fill:var(--muted)}
+.erd[data-k="3"] .focus .box{fill:var(--white);stroke:var(--navy);stroke-width:2}
+.erd[data-k="3"] .key{fill:var(--violet);font-weight:700}
+
 /* read-more links in the footer row */
 .refs{position:absolute;right:6cqw;bottom:3.4cqh;display:flex;gap:1.2cqw;align-items:center;font-size:1.1cqw;color:var(--muted);z-index:3}
 .refs a{font-weight:600;color:var(--violet);text-decoration:none;white-space:nowrap}
@@ -290,4 +327,4 @@ nav button:hover{background:#1f2d48}
   .anim,.sticker,.vline,.bars .bar,.stack span{animation:none !important}
   .slide{display:block !important;width:16in;height:9in;page-break-after:always;border-radius:0;box-shadow:none}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important} .dgm .runner{display:none}}

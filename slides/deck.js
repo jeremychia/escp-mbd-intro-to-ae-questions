@@ -62,6 +62,25 @@ document.querySelectorAll('ul.tree').forEach(tree => {
   tree.innerHTML = TREE.map(([name, kind]) => `<li class="${kind}${highlighted.includes(name) ? ' on' : ''}">${name}</li>`).join('');
 });
 
+// stepped diagrams: each pill holds its step's caption, and each SVG part lists its steps in data-in, or its first step in data-from
+document.querySelectorAll('.slide.stepped').forEach(slide => {
+  const buttons = [...slide.querySelectorAll('.pills button')], caption = slide.querySelector('.caption');
+  slide.dataset.steps = buttons.length;
+  slide.step = k => {
+    slide.dataset.k = k;
+    buttons.forEach((button, index) => button.classList.toggle('on', index === k));
+    caption.textContent = buttons[k].dataset.caption;
+    slide.querySelectorAll('[data-in]').forEach(part => {
+      const focus = k > 0 && part.dataset.in.split(' ').includes(String(k));
+      part.classList.toggle('focus', focus);
+      part.classList.toggle('dim', k > 0 && !focus);
+      if (focus && part.matches('.node')) { part.classList.remove('pulse'); void part.getBBox(); part.classList.add('pulse'); }
+    });
+    slide.querySelectorAll('[data-from]').forEach(part => part.classList.toggle('later', k < +part.dataset.from));
+  };
+  buttons.forEach((button, index) => button.onclick = () => slide.step(index));
+});
+
 // a stepped slide's own section script sets slide.step(k) to draw step k
 let current = 0;
 function show(index, fromEnd = false){

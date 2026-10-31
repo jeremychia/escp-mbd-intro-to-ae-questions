@@ -8,11 +8,37 @@
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/deploy/continuous-integration">CI in dbt</a></div></div></section>
 
 <!-- CI/CD pipeline -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>what happens in a continuous integration pipeline?</h2>
   <div class="with-tree">
     <ul class="tree" data-on=".github/workflows"></ul>
-    <div class="main"><div class="fill"><img src="assets/ci-cd.png" alt="code is committed, then the CI pipeline builds and runs unit and integration tests, then the CD pipeline moves it through review, staging and production"></div></div>
+    <div class="main" style="gap:2cqh">
+      <div class="pills">
+        <button data-caption="use → to follow one change from your laptop to production.">overview</button>
+        <button data-caption="you write code and commit it to Git. a commit can touch related code elsewhere in the project.">commit</button>
+        <button data-caption="continuous integration builds the change and runs its unit and integration tests before anyone merges it.">integrate</button>
+        <button data-caption="continuous delivery takes the merged change through review and staging, then into production.">deliver</button>
+      </div>
+      <div class="fill">
+        <svg class="dgm" viewBox="0 40 1000 320" role="img" aria-label="code is committed, with related code alongside, then the continuous integration pipeline builds it and runs unit and integration tests, then the continuous delivery pipeline moves it through review, staging and production">
+          <g data-in="2"><rect class="zone" x="280" y="70" width="310" height="250" rx="30"/><text class="head" x="435" y="98">continuous integration</text></g>
+          <g data-in="3"><rect class="zone" x="630" y="70" width="330" height="250" rx="30"/><text class="head" x="795" y="98">continuous delivery</text></g>
+          <path class="edge" data-in="1" d="M86 190 H164 M190 216 V274"/>
+          <path class="edge" data-in="2" d="M216 190 H509"/>
+          <path class="edge" data-in="3" d="M561 190 H864"/>
+          <g class="node" data-in="1"><circle class="box" cx="60" cy="190" r="26"/><image href="assets/cutouts/icon-code.png" x="45" y="175" width="30" height="30"/><text x="60" y="150">code</text></g>
+          <g class="node" data-in="1"><circle class="box" cx="190" cy="190" r="26"/><image href="assets/cutouts/icon-commit.png" x="175" y="175" width="30" height="30"/><text x="190" y="150">commit</text></g>
+          <g class="node" data-in="1"><circle class="box" cx="190" cy="300" r="26"/><image href="assets/cutouts/icon-related-code.png" x="175" y="285" width="30" height="30"/><text x="190" y="344">related code</text></g>
+          <g class="node" data-in="2"><circle class="box" cx="345" cy="190" r="26"/><image href="assets/cutouts/icon-build.png" x="331" y="176" width="28" height="28"/><text x="345" y="234">build</text></g>
+          <g class="node" data-in="2"><circle class="box" cx="440" cy="190" r="26"/><image href="assets/cutouts/icon-unit-tests.png" x="426" y="176" width="28" height="28"/><text x="440" y="234">unit</text><text x="440" y="254">tests</text></g>
+          <g class="node" data-in="2"><circle class="box" cx="535" cy="190" r="26"/><image href="assets/cutouts/icon-integration-tests.png" x="519" y="174" width="32" height="32"/><text x="535" y="234">integration</text><text x="535" y="254">tests</text></g>
+          <g class="node" data-in="3"><circle class="box" cx="700" cy="190" r="26"/><image href="assets/cutouts/icon-review.png" x="686" y="176" width="28" height="28"/><text x="700" y="234">review</text></g>
+          <g class="node" data-in="3"><circle class="box" cx="795" cy="190" r="26"/><g fill="none" stroke="#233759" stroke-width="2"><rect x="784" y="178" width="22" height="10" rx="2"/><rect x="784" y="192" width="22" height="10" rx="2"/></g><circle cx="800" cy="183" r="1.6" fill="#233759"/><circle cx="800" cy="197" r="1.6" fill="#233759"/><text x="795" y="234">staging</text></g>
+          <g class="node" data-in="3"><circle class="box" cx="890" cy="190" r="26"/><g fill="none" stroke="#233759" stroke-width="2"><circle cx="890" cy="190" r="12"/><ellipse cx="890" cy="190" rx="5" ry="12"/><path d="M878 190 H902"/></g><text x="890" y="234">production</text></g>
+        </svg>
+      </div>
+      <p class="note caption"></p>
+    </div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/deploy/continuous-integration">CI in dbt</a><a href="https://docs.github.com/en/actions">GitHub Actions</a><a href="https://en.wikipedia.org/wiki/CI/CD">CI/CD</a></div></div></section>
 
