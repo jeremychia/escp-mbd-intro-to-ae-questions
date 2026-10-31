@@ -32,7 +32,7 @@
       <span class="cs">Filters: Currently enrolled students only</span>
     <span class="ck">columns</span><span class="cp">:</span>
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_id
-        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Unique identifier for students"</span>
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"ESCP student number, given once at admission"</span>
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_name
         <span class="ck">description</span><span class="cp">:</span> <span class="cs">"</span><mark>{{ doc('student_name') }}</mark><span class="cs">"</span></pre></figure>
         <div class="code-link" aria-hidden="true">→</div>
@@ -70,6 +70,24 @@ First name, last name of student
     <div class="panel tint t2"><div class="k word">usage</div><p>usage notes (e.g. updated weekly)</p></div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a><a href="https://docs.getdbt.com/reference/resource-properties/description">description</a></div></div></section>
+
+<!-- don't restate the column name -->
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>a description that repeats the column name tells the reader nothing</h2>
+  <div class="cols c2 body" style="align-items:start">
+    <div class="panel head"><h3>✗ repeats the name</h3><div><ul class="dots">
+      <li><code>student_id</code>: “unique identifier for students”</li>
+      <li><code>attendance</code>: “attendance of the student”</li>
+      <li><code>avg_result</code>: “average result”</li>
+    </ul></div></div>
+    <div class="panel head" style="background:var(--lavender-soft)"><h3>✓ says what the name can't</h3><div><ul class="dots">
+      <li><code>student_id</code>: “ESCP student number, given once at admission”</li>
+      <li><code>attendance</code>: “share of sessions attended this term, from 0 to 1”</li>
+      <li><code>avg_result</code>: “mean of graded exams, out of 20. null until the first grade is out”</li>
+    </ul></div></div>
+  </div>
+  <p class="note" style="margin-top:2.4cqh">dbt Labs gives its AI agents the same rule: “never generate documentation which simply restates the entity's name.”</p>
+</div><div class="refs"><span>read more</span><a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/references/writing-documentation.md">writing documentation</a><a href="https://docs.getdbt.com/reference/resource-properties/description">description</a></div></div></section>
 
 <!-- projects that improve standards -->
 <section id="standard-projects" class="slide card"><div class="sheet"><div class="pad">

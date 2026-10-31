@@ -181,6 +181,18 @@
     </div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/commands/run">dbt run</a><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/ref">ref</a><a href="https://docs.getdbt.com/docs/build/materializations">materializations</a></div></div></section>
+
+<!-- plan a model backwards -->
+<section id="plan-model" class="slide card"><div class="sheet"><div class="pad">
+  <h2>plan a model by starting from the table you want</h2>
+  <p class="sub">the method dbt Labs gives AI agents in its <a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/references/planning-dbt-models.md">agent skills</a>. it works just as well for people.</p>
+  <div class="cols c4 body" style="align-items:stretch;margin-bottom:6cqh">
+    <div class="panel tint t1"><div class="k">01</div><p><b>mock the output.</b> sketch the table you want, with a few made-up rows. state the grain: what one row means.</p></div>
+    <div class="panel tint t4"><div class="k">02</div><p><b>write rough SQL.</b> put <code>???</code> where a table is missing. if you can't write it, change the table.</p></div>
+    <div class="panel tint t3"><div class="k">03</div><p><b>list the inputs.</b> each <code>???</code> becomes an upstream model. mock it the same way.</p></div>
+    <div class="panel tint t5"><div class="k">04</div><p><b>reuse first.</b> use a model that fits. extend one that nearly fits. build a new one only if neither does.</p></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/references/planning-dbt-models.md">planning dbt models</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">project structure</a></div></div></section>
 <script>
 // mind map of the software engineering principles behind a data stack
 (function drawMindMap(){

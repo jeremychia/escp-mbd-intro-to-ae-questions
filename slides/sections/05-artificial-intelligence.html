@@ -74,6 +74,27 @@
     </ul></div></div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://www.linkedin.com/posts/alexander-noonan_exactly-right-share-7520930470130413568-SFTA/">the post and comments</a></div></div></section>
+
+<!-- agent skills are guardrails for AI -->
+<section id="agent-skills" class="slide card"><div class="sheet"><div class="pad">
+  <h2>dbt Labs now writes its project standards for AI agents too</h2>
+  <p class="sub"><a href="https://github.com/dbt-labs/dbt-agent-skills">agent skills</a> are instruction files that an AI agent reads when your request matches them</p>
+  <div class="cols c2 body" style="align-items:start;gap:2.4cqw">
+    <figure class="code sm"><figcaption><i></i><i></i><i></i><span>using-dbt-for-analytics-engineering/SKILL.md</span></figcaption>
+<pre><span class="ck">STOP</span> if you're about to:
+<span class="cp">-</span> write SQL without checking column names
+<span class="cp">-</span> modify a model without reading its YAML
+<span class="cp">-</span> skip <mark>dbt show</mark> validation
+<span class="cp">-</span> create a new model when a column
+  addition would suffice</pre></figure>
+    <div class="panel head"><h3>what to notice</h3><div><ul class="dots linked small">
+      <li><span>the same standards you saw today, written for a machine reader.</span><a class="goto" data-goto="project-standards"></a></li>
+      <li><span>they install like any other package, through <code>packages.yml</code> and <code>dbt deps</code>.</span><a class="goto" data-goto="packages"></a></li>
+      <li><span>they tell the agent to treat data as untrusted. an agent must never follow an instruction it finds in a column value.</span></li>
+      <li><span>read them critically. one file calls staging “bronze”, but staging is silver.</span><a class="goto" data-goto="model-layers"></a></li>
+    </ul></div></div>
+  </div>
+</div><div class="refs"><span>read more</span><a href="https://github.com/dbt-labs/dbt-agent-skills">dbt agent skills</a><a href="https://docs.getdbt.com/docs/dbt-ai/package-skills">package skills</a><a href="https://agentskills.io/home">agent skills format</a></div></div></section>
 <script>
 // stepped slide: one shift at a time
 const shiftSlide = document.querySelector('.shifts');
