@@ -31,7 +31,7 @@
     <ul class="tree" data-on="models,tests"></ul>
     <div class="main">
       <div class="chips" style="margin-top:2cqh">
-        <a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">not null</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">unique</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">accepted values</a><a class="chip alt" href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">expression is true</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">referential integrity</a>
+        <a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">not null</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">unique</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">accepted values</a><a class="chip alt" href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">accepted range</a><a class="chip alt" href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">expression is true</a><a class="chip alt" href="https://docs.getdbt.com/reference/resource-properties/data-tests">referential integrity</a>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
       <span class="cs">Filters: Currently enrolled students only</span>
     <span class="ck">columns</span><span class="cp">:</span>
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_id
-        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Unique identifier for students"</span>
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"ESCP student number, given once at admission"</span>
         <span class="ck">data_tests</span><span class="cp">:</span>
           <span class="blank">- not_null</span>
           <span class="blank">- unique</span>
@@ -63,9 +63,10 @@
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_gpa
         <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Decimal score out of 20"</span>
         <span class="ck">data_tests</span><span class="cp">:</span>
-          <span class="blank">- dbt_utils.expression_is_true:</span>
+          <span class="blank">- dbt_utils.accepted_range:</span>
               <span class="blank">arguments:</span>
-                <span class="blank">expression: '>= 0'</span>
+                <span class="blank">min_value: 0</span>
+                <span class="blank">max_value: 20</span>
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> promotion
         <span class="ck">description</span><span class="cp">:</span> <span class="cs">"Student promotion"</span>
         <span class="ck">data_tests</span><span class="cp">:</span>
@@ -121,8 +122,24 @@
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/commands/test">dbt test</a><a href="https://docs.getdbt.com/reference/node-selection/syntax">--select syntax</a></div></div></section>
 
+<!-- which tests are worth it -->
+<section id="test-priority" class="slide card"><div class="sheet"><div class="pad">
+  <h2>every test is a query you pay for, so start with the keys</h2>
+  <p class="sub">how dbt Labs tells its AI agents to rank data tests, from its <a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/references/writing-data-tests.md">agent skills</a></p>
+  <div class="cols c4 body" style="align-items:stretch">
+    <div class="panel tint t1"><div class="k word">always</div><p><code>unique</code> and <code>not_null</code> on the primary key. <code>relationships</code> on foreign keys. a broken key breaks every join below it.</p></div>
+    <div class="panel tint t4"><div class="k word">when the data shows it</div><p><code>accepted_values</code> on a column with a known set. <code>not_null</code> where you checked there are no nulls.</p></div>
+    <div class="panel tint t3"><div class="k word">sometimes</div><p><code>accepted_range</code> on bounded numbers. <code>expression_is_true</code> for a rule across columns.</p></div>
+    <div class="panel tint t2"><div class="k word">avoid</div><p><code>not_null</code> on every column. many <code>expression_is_true</code> tests on one model.</p></div>
+  </div>
+  <ul class="dots linked small" style="margin-top:2.4cqh;margin-bottom:6cqh">
+    <li><span>test data quality in staging, keys wherever a join changes the grain, and business rules in marts.</span><a class="goto" data-goto="model-layers"></a></li>
+    <li><span>to check that your SQL logic is right, write a unit test instead.</span><a class="goto" data-goto="data-tests"></a></li>
+  </ul>
+</div><div class="refs"><span>read more</span><a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/references/writing-data-tests.md">writing data tests</a><a href="https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/adding-dbt-unit-test/SKILL.md">adding unit tests</a><a href="https://docs.getdbt.com/docs/build/unit-tests">unit tests</a></div></div></section>
+
 <!-- packages -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section id="packages" class="slide card"><div class="sheet"><div class="pad">
   <h2>I have a use case. do I always need to write code myself?</h2>
   <div class="with-tree">
     <ul class="tree" data-on="package-lock.yml,packages.yml"></ul>
@@ -162,7 +179,7 @@
 const testSlide = document.querySelector('.tests-reveal');
 const TEST_STEPS = [
   {pill:'guess', caption:'which tests would you add to each column? use → to reveal.'},
-  {pill:'reveal', caption:'not_null and unique on the primary key, expression_is_true on numbers, accepted_values on categories.'},
+  {pill:'reveal', caption:'not_null and unique on the primary key, accepted_range on numbers, accepted_values on categories.'},
 ];
 document.getElementById('test-pills').innerHTML = TEST_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
 function setTests(k){
