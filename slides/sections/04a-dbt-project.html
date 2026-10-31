@@ -184,7 +184,7 @@
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">project structure</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/2-staging">staging</a><a href="https://docs.getdbt.com/best-practices/how-we-structure/4-marts">marts</a><a href="https://docs.databricks.com/aws/en/lakehouse/medallion">medallion</a></div></div></section>
 
 <!-- dbt run -->
-<section class="slide card compile" data-steps="2" data-k="0"><div class="sheet"><div class="pad">
+<section class="slide card compile" data-steps="3" data-k="0"><div class="sheet"><div class="pad">
   <h2>what are the building blocks of dbt? models.</h2>
   <div class="with-tree">
     <ul class="tree" data-on="models"></ul>
@@ -194,35 +194,20 @@
         <div class="pills" id="compile-pills"></div>
         <a class="cmd" href="https://docs.getdbt.com/reference/commands/run">dbt run --select mrt_bpf_per_user</a>
       </div>
-      <div class="code-stack" style="margin-top:1.6cqh">
-        <figure class="code sm"><figcaption><i></i><i></i><i></i><span>mrt_bpf_per_user.sql</span></figcaption>
-<pre><mark class="m2">{{ config(materialized="view") }}</mark>
-
+      <figure class="code sm" style="margin-top:1.6cqh"><figcaption><i></i><i></i><i></i><span class="swap" data-at="1" data-to="compiled by dbt">mrt_bpf_per_user.sql</span></figcaption>
+<pre><mark class="m2 swap" data-at="1" data-to="create or replace view `vi-dv-prod-data.marts.mrt_bpf_per_user`">{{ config(materialized="view") }}</mark>
+<span class="ck swap" data-at="1" data-to="as ("></span>
 <span class="ck">select</span>
     user_id_buyer,
     <span class="cf">sum</span>(bpf_after_refunds_eur) <span class="ck">as</span> bpf_after_refunds_eur,
     <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> count_txn,
     <span class="cf">sum</span>(bpf_after_refunds_eur)
     / <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> avg_bpf_after_refunds_eur,
-<span class="ck">from</span> <mark>{{ ref("mrt_transactions") }}</mark>
+<span class="ck">from</span> <mark class="swap" data-at="2" data-to="`vi-dv-prod-data.marts.mrt_transactions`">{{ ref("mrt_transactions") }}</mark>
 <span class="ck">where</span> <span class="cf">date</span>(transaction_at) = <span class="cs">'2025-10-01'</span>
 <span class="ck">group by</span> all
-<span class="ck">order by</span> avg_bpf_after_refunds_eur <span class="ck">desc</span></pre></figure>
-        <figure class="code sm"><figcaption><i></i><i></i><i></i><span>compiled by dbt</span></figcaption>
-<pre><mark class="m2">create or replace view</mark> <span class="cs">`vi-dv-prod-data.marts.mrt_bpf_per_user`</span>
-<span class="ck">as</span> (
-  <span class="ck">select</span>
-      user_id_buyer,
-      <span class="cf">sum</span>(bpf_after_refunds_eur) <span class="ck">as</span> bpf_after_refunds_eur,
-      <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> count_txn,
-      <span class="cf">sum</span>(bpf_after_refunds_eur)
-      / <span class="cf">count</span>(<span class="ck">distinct</span> transaction_id) <span class="ck">as</span> avg_bpf_after_refunds_eur,
-  <span class="ck">from</span> <mark>`vi-dv-prod-data.marts.mrt_transactions`</mark>
-  <span class="ck">where</span> <span class="cf">date</span>(transaction_at) = <span class="cs">'2025-10-01'</span>
-  <span class="ck">group by</span> all
-  <span class="ck">order by</span> avg_bpf_after_refunds_eur <span class="ck">desc</span>
-)</pre></figure>
-      </div>
+<span class="ck">order by</span> avg_bpf_after_refunds_eur <span class="ck">desc</span>
+<span class="swap" data-at="1" data-to=")"> </span></pre></figure>
       <p class="note" id="compile-caption" style="margin-top:1.4cqh"></p>
     </div>
   </div>
@@ -314,17 +299,36 @@ function setModels(k){
 modelSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setModels(+button.dataset.k));
 modelSlide.step = setModels;
 
-// stepped slide: the model as written, then the SQL that dbt runs
+// stepped slide: dbt rewrites the model in place, the config first, then the ref
 const compileSlide = document.querySelector('.compile');
 const COMPILE_STEPS = [
-  {pill:'the model I write', caption:'use → to see the SQL that dbt runs.'},
-  {pill:'what dbt runs', caption:'dbt swaps the ref for the full table name, and the config for create or replace view.'},
+  {pill:'the model I write', caption:'use → to watch dbt turn the model into the SQL it runs.'},
+  {pill:'config', caption:'the config block becomes the statement that builds the model: here, create or replace view.'},
+  {pill:'ref', caption:'ref() becomes the full table name, so the same model runs against dev or prod tables.'},
 ];
 document.getElementById('compile-pills').innerHTML = COMPILE_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
+const swaps = [...compileSlide.querySelectorAll('.swap')];
+swaps.forEach(swap => swap.dataset.from = swap.textContent);
+// deletes the old text and types the new one, so the substitution reads as an edit to the file
+function retype(swap, text){
+  clearInterval(swap.timer);
+  if (swap.textContent === text) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { swap.textContent = text; return; }
+  let shown = swap.textContent, typing = !shown;
+  swap.classList.remove('flash');
+  swap.classList.add('typing');
+  swap.timer = setInterval(() => {
+    shown = typing ? text.slice(0, shown.length + 2) : shown.slice(0, -2);
+    if (!shown) typing = true;
+    swap.textContent = shown;
+    if (typing && shown === text) { clearInterval(swap.timer); swap.classList.remove('typing'); void swap.offsetWidth; swap.classList.add('flash'); }
+  }, 18);
+}
 function setCompile(k){
   compileSlide.dataset.k = k;
   compileSlide.querySelectorAll('.pills button').forEach(button => button.classList.toggle('on', +button.dataset.k === k));
   document.getElementById('compile-caption').textContent = COMPILE_STEPS[k].caption;
+  swaps.forEach(swap => retype(swap, k >= +swap.dataset.at ? swap.dataset.to : swap.dataset.from));
 }
 compileSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setCompile(+button.dataset.k));
 compileSlide.step = setCompile;
