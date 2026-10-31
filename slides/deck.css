@@ -141,10 +141,10 @@ ol.nums li::marker{color:var(--accent);font-weight:700}
 .code .ck{color:var(--lavender)} .code .cs{color:var(--peach)} .code .cp{color:var(--steel)} .code .cf{color:var(--aqua)} .code .cn{color:var(--lemon)}
 .code mark{background:var(--lemon);color:var(--navy);border-radius:.3cqw;padding:0 .2cqw;font-weight:700}
 .code mark.m2{background:var(--s3-soft)}
-/* the model and its compiled SQL share one window; the step picks which shows */
-.code-stack{display:grid}
-.code-stack>.code{grid-area:1/1;transition:opacity .35s,visibility .35s}
-.compile[data-k="0"] .code-stack>.code:nth-child(2),.compile[data-k="1"] .code-stack>.code:nth-child(1){opacity:0;visibility:hidden}
+/* dbt rewrites the model in place: a caret while it types, then a short lemon flash on the new text */
+.compile .swap.typing{box-shadow:.18cqw 0 0 var(--lemon)}
+.compile .swap.flash{animation:flash 1.2s ease-out}
+@keyframes flash{from{background:var(--lemon);color:var(--navy)}}
 /* tests show as dashed blanks until the reveal step */
 .code .blank{border-radius:.3cqw;transition:background .3s,color .3s}
 .tests-reveal[data-k="0"] .code .blank{color:transparent;outline:.12cqw dashed var(--lavender);outline-offset:-.12cqw;background:rgba(255,255,255,.06)}
@@ -308,7 +308,7 @@ nav button:hover{background:#1f2d48}
   .sticker{position:static;display:inline-flex;margin-top:12px;font-size:18px !important;transform:none !important}
   .sticker.round{width:110px !important}
   .pad svg{height:auto !important}
-  .code-stack{gap:8px} .code-stack>.code{grid-area:auto;opacity:1 !important;visibility:visible !important} .code.sm pre{font-size:11px}
+  .code.sm pre{font-size:11px}
   .code-pair{grid-template-columns:1fr;gap:8px} .code-link{transform:rotate(90deg);margin:0;font-size:22px} .code pre{font-size:11px;overflow-x:auto;padding:12px} .code figcaption{font-size:11px;padding:6px 10px;gap:5px} .code figcaption i{width:8px;height:8px}
   .thread{width:auto} .msg p{font-size:14px} .tag{font-size:11px} .attachment{width:100%}
   .chart-cols{grid-template-columns:1fr} .quotes blockquote{font-size:16px} .stack span{font-size:12px} .swatch{width:12px;height:12px}
