@@ -19,6 +19,7 @@
   --s4:#1d5bd8; --s4-soft:#dde8ff;
   --s5:#b0237f; --s5-soft:#fde0f1;
   --s6:#8a6300; --s6-soft:#fff1b8;
+  --s7:#0e7490; --s7-soft:#d5f1f7;
   --accent:var(--s1); --accent-soft:var(--s1-soft);
   --ink:#111;
   --muted:#5a6465;
@@ -47,6 +48,7 @@ body{background:var(--navy-deep);color:var(--ink);font-family:var(--sans);overfl
 .card .sheet::before{content:"";position:absolute;left:0;right:0;top:0;height:.9cqh;background:var(--accent)}
 .t1{--accent:var(--s1);--accent-soft:var(--s1-soft)} .t2{--accent:var(--s2);--accent-soft:var(--s2-soft)} .t3{--accent:var(--s3);--accent-soft:var(--s3-soft)}
 .t4{--accent:var(--s4);--accent-soft:var(--s4-soft)} .t5{--accent:var(--s5);--accent-soft:var(--s5-soft)} .t6{--accent:var(--s6);--accent-soft:var(--s6-soft)}
+.t7{--accent:var(--s7);--accent-soft:var(--s7-soft)}
 .panel.tint{background:var(--accent-soft)}
 .card .pad{inset:5cqh 3.4cqw 9cqh 3.4cqw;display:flex;flex-direction:column}
 .sheet .logo{position:absolute;left:3.4cqw;bottom:3cqh;height:4cqh;opacity:.85}

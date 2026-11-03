@@ -20,7 +20,7 @@ document.querySelectorAll('svg.net').forEach((svg, index) => drawNetwork(svg, 7 
 
 // ESCP logo, talk title and slide number on every framed slide
 // footer shows the section a slide belongs to; dividers get their section numeral
-const SECTIONS = ['', 'what is analytics engineering', 'the problems', 'where analytics engineers add value', 'dbt', 'artificial intelligence', 'other tools'];
+const SECTIONS = ['', 'what is analytics engineering', 'the problems', 'where analytics engineers add value', 'dbt', 'artificial intelligence', 'other tools', 'what to do next'];
 const slides = [...document.querySelectorAll('.slide')];
 let section = 0;
 slides.forEach((slide, index) => {
