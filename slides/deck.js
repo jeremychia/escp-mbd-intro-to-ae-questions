@@ -59,7 +59,10 @@ const TREE = [['.github/workflows','dir'],['analyses','dir'],['docs','dir'],['ma
 document.querySelectorAll('ul.tree').forEach(tree => {
   const highlighted = tree.dataset.on.split(',');
   tree.setAttribute('aria-label', `dbt project folders, highlighting ${highlighted.join(', ')}`);
-  tree.innerHTML = TREE.map(([name, kind]) => `<li class="${kind}${highlighted.includes(name) ? ' on' : ''}">${name}</li>`).join('');
+  // the full tree is shown once; later slides show only the folders they talk about
+  const shown = 'full' in tree.dataset ? TREE : TREE.filter(([name]) => highlighted.includes(name));
+  tree.classList.toggle('compact', !('full' in tree.dataset));
+  tree.innerHTML = shown.map(([name, kind]) => `<li class="${kind}${highlighted.includes(name) ? ' on' : ''}">${name}</li>`).join('');
 });
 
 // stepped diagrams: each pill holds its step's caption, and each SVG part lists its steps in data-in, or its first step in data-from
