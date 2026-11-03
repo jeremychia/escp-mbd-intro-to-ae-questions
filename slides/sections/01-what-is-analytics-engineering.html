@@ -1,19 +1,16 @@
-<!-- Venn circles shared by the two bridging-the-gap slides -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="venn-base">
-      <circle cx="240" cy="240" r="185" fill="#c7d5eb" fill-opacity=".55" stroke="#233759" stroke-width="1.5" style="mix-blend-mode:multiply"/>
-      <circle cx="500" cy="240" r="185" fill="#ceceff" fill-opacity=".8" stroke="#3b2282" stroke-width="3" style="mix-blend-mode:multiply"/>
-      <circle cx="760" cy="240" r="185" fill="#c7d5eb" fill-opacity=".55" stroke="#233759" stroke-width="1.5" style="mix-blend-mode:multiply"/>
-      <text x="200" y="34" style="font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle">data engineers</text>
-      <text x="500" y="34" style="font:700 22px Inter,sans-serif;fill:#3b2282;text-anchor:middle">analytics engineers</text>
-      <text x="800" y="34" style="font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle">data analysts</text>
-    </g>
-  </defs>
-</svg>
 <style>
-.venn .q{font:500 16px Inter,sans-serif;fill:#111;text-anchor:middle}
+.venn circle{fill:#c7d5eb;fill-opacity:.55;stroke:#233759;stroke-width:1.5;mix-blend-mode:multiply;transition:fill-opacity .4s}
+.venn circle.ae{fill:#ceceff;fill-opacity:.8;stroke:#3b2282;stroke-width:3}
+.venn circle.focus{fill-opacity:.95}
+.venn circle.dim{opacity:1;fill-opacity:.15}
+.venn .lens{fill:var(--lemon)}
+.venn .node{transform-box:fill-box;transform-origin:center}
+.venn .node.pulse{animation:pulse .6s ease-out}
+.venn .role{font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle}
+.venn .role.ae{fill:#3b2282}
+.venn .q{font:500 16px Inter,sans-serif;fill:#111;text-anchor:middle;transition:opacity .4s,transform .4s;transition-delay:calc(var(--d,0) * 150ms)}
 .venn .q.shared{font-weight:700;font-size:15px;fill:#3b2282}
+.venn .q.later{transform:translateY(10px)}
 </style>
 
 <!-- divider 01 -->
@@ -99,33 +96,66 @@
 </div></div></section>
 
 <!-- bridging the gap: questions -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>analytics engineers share questions with both neighbours</h2>
-  <p class="sub">the questions each role asks, and where they overlap</p>
-  <svg class="venn body" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram of data engineers, analytics engineers and data analysts, with the questions each role asks and the two shared questions in the overlaps" style="width:100%">
-    <use href="#venn-base"/>
-    <text class="q" x="165" y="175"><tspan x="165">how can we get data</tspan><tspan x="165" dy="20">from one system</tspan><tspan x="165" dy="20">to another?</tspan></text>
-    <text class="q" x="165" y="290"><tspan x="165">how should we</tspan><tspan x="165" dy="20">allocate resources</tspan><tspan x="165" dy="20">for jobs to run?</tspan></text>
-    <text class="q shared" x="370" y="225"><tspan x="370">when</tspan><tspan x="370" dy="20">should we</tspan><tspan x="370" dy="20">run the job?</tspan></text>
-    <text class="q" x="500" y="175"><tspan x="500">how do we</tspan><tspan x="500" dy="20">optimise</tspan><tspan x="500" dy="20">usage costs?</tspan></text>
-    <text class="q" x="500" y="290"><tspan x="500">what is the</tspan><tspan x="500" dy="20">right way to</tspan><tspan x="500" dy="20">document this?</tspan></text>
-    <text class="q shared" x="630" y="225"><tspan x="630">how do we</tspan><tspan x="630" dy="20">ensure</tspan><tspan x="630" dy="20">data quality?</tspan></text>
-    <text class="q" x="835" y="175"><tspan x="835">what is the reason</tspan><tspan x="835" dy="20">for the revenue</tspan><tspan x="835" dy="20">increase or decrease?</tspan></text>
-    <text class="q" x="835" y="290"><tspan x="835">how can we test the</tspan><tspan x="835" dy="20">statistical significance</tspan><tspan x="835" dy="20">of this change?</tspan></text>
-  </svg>
+  <div class="pills" style="margin-top:2.4cqh">
+    <button data-caption="the questions each role asks, and where they overlap. use → to see what each role asks.">overview</button>
+    <button data-caption="data engineers ask how data moves between systems, and what the jobs need to run.">data engineers</button>
+    <button data-caption="data analysts ask what the numbers mean for the business.">data analysts</button>
+    <button data-caption="analytics engineers ask how to keep the models cheap to run and easy to understand.">analytics engineers</button>
+    <button data-caption="in the overlaps, analytics engineers share scheduling with data engineers and data quality with data analysts.">the overlaps</button>
+  </div>
+  <div class="fill" style="margin-top:2cqh">
+    <svg class="venn" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram of data engineers, analytics engineers and data analysts, with the questions each role asks and the two shared questions in the overlaps" style="width:100%;height:100%">
+      <circle class="node" data-in="1" cx="240" cy="240" r="185"/>
+      <circle class="node ae" data-in="3" cx="500" cy="240" r="185"/>
+      <circle class="node" data-in="2" cx="760" cy="240" r="185"/>
+      <path class="lens node" data-in="4" data-from="4" d="M370 108.4 A185 185 0 0 1 370 371.6 A185 185 0 0 1 370 108.4Z"/>
+      <path class="lens node" data-in="4" data-from="4" d="M630 108.4 A185 185 0 0 1 630 371.6 A185 185 0 0 1 630 108.4Z"/>
+      <text class="role" x="200" y="34">data engineers</text>
+      <text class="role ae" x="500" y="34">analytics engineers</text>
+      <text class="role" x="800" y="34">data analysts</text>
+      <text class="q" data-from="1" x="165" y="175"><tspan x="165">how can we get data</tspan><tspan x="165" dy="20">from one system</tspan><tspan x="165" dy="20">to another?</tspan></text>
+      <text class="q" data-from="1" style="--d:1" x="165" y="290"><tspan x="165">how should we</tspan><tspan x="165" dy="20">allocate resources</tspan><tspan x="165" dy="20">for jobs to run?</tspan></text>
+      <text class="q" data-from="2" x="835" y="175"><tspan x="835">what is the reason</tspan><tspan x="835" dy="20">for the revenue</tspan><tspan x="835" dy="20">increase or decrease?</tspan></text>
+      <text class="q" data-from="2" style="--d:1" x="835" y="290"><tspan x="835">how can we test the</tspan><tspan x="835" dy="20">statistical significance</tspan><tspan x="835" dy="20">of this change?</tspan></text>
+      <text class="q" data-from="3" x="500" y="175"><tspan x="500">how do we</tspan><tspan x="500" dy="20">optimise</tspan><tspan x="500" dy="20">usage costs?</tspan></text>
+      <text class="q" data-from="3" style="--d:1" x="500" y="290"><tspan x="500">what is the</tspan><tspan x="500" dy="20">right way to</tspan><tspan x="500" dy="20">document this?</tspan></text>
+      <text class="q shared" data-from="4" x="370" y="225"><tspan x="370">when</tspan><tspan x="370" dy="20">should we</tspan><tspan x="370" dy="20">run the job?</tspan></text>
+      <text class="q shared" data-from="4" style="--d:1" x="630" y="225"><tspan x="630">how do we</tspan><tspan x="630" dy="20">ensure</tspan><tspan x="630" dy="20">data quality?</tspan></text>
+    </svg>
+  </div>
+  <p class="note caption" style="margin-top:1.4cqh"></p>
 </div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/blog/what-is-analytics-engineering">what is analytics engineering</a></div></div></section>
 
 <!-- bridging the gap: what each role brings -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<section class="slide card stepped" data-k="0"><div class="sheet"><div class="pad">
   <h2>analytics engineers bridge data engineers and analysts</h2>
-  <p class="sub">what each role brings</p>
-  <svg class="venn body" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram: data engineers build and maintain infrastructure; analytics engineers share software engineering practices with data engineers and an analytical, business-outcomes mindset with data analysts; data analysts use data to answer questions" style="width:100%">
-    <use href="#venn-base"/>
-    <text class="q" x="165" y="225"><tspan x="165">builds and maintains</tspan><tspan x="165" dy="20">infrastructure for</tspan><tspan x="165" dy="20">data applications</tspan></text>
-    <text class="q shared" x="370" y="205" style="font-size:14px"><tspan x="370">introduces</tspan><tspan x="370" dy="18">good</tspan><tspan x="370" dy="18">software</tspan><tspan x="370" dy="18">engineering</tspan><tspan x="370" dy="18">practices</tspan></text>
-    <text class="q shared" x="630" y="205" style="font-size:14px"><tspan x="630">brings an</tspan><tspan x="630" dy="18">analytical</tspan><tspan x="630" dy="18">and business-</tspan><tspan x="630" dy="18">outcomes</tspan><tspan x="630" dy="18">mindset</tspan></text>
-    <text class="q" x="835" y="225"><tspan x="835">uses data to answer</tspan><tspan x="835" dy="20">questions and</tspan><tspan x="835" dy="20">solve problems</tspan></text>
-  </svg>
+  <div class="pills" style="margin-top:2.4cqh">
+    <button data-caption="what each role brings. use → to step through the three roles.">overview</button>
+    <button data-caption="data engineers build and maintain the infrastructure that data applications run on.">data engineers</button>
+    <button data-caption="data analysts use data to answer questions and solve problems.">data analysts</button>
+    <button data-caption="from data engineering, analytics engineers bring good software engineering practices.">software practices</button>
+    <button data-caption="from analysis, analytics engineers bring an analytical mindset focused on business outcomes.">business mindset</button>
+    <button data-caption="together, these two make analytics engineers the bridge between data engineers and analysts.">analytics engineers</button>
+  </div>
+  <div class="fill" style="margin-top:2cqh">
+    <svg class="venn" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram: data engineers build and maintain infrastructure; analytics engineers share software engineering practices with data engineers and an analytical, business-outcomes mindset with data analysts; data analysts use data to answer questions" style="width:100%;height:100%">
+      <circle class="node" data-in="1 3" cx="240" cy="240" r="185"/>
+      <circle class="node ae" data-in="3 4 5" cx="500" cy="240" r="185"/>
+      <circle class="node" data-in="2 4" cx="760" cy="240" r="185"/>
+      <path class="lens node" data-in="3 5" data-from="3" d="M370 108.4 A185 185 0 0 1 370 371.6 A185 185 0 0 1 370 108.4Z"/>
+      <path class="lens node" data-in="4 5" data-from="4" d="M630 108.4 A185 185 0 0 1 630 371.6 A185 185 0 0 1 630 108.4Z"/>
+      <text class="role" x="200" y="34">data engineers</text>
+      <text class="role ae" x="500" y="34">analytics engineers</text>
+      <text class="role" x="800" y="34">data analysts</text>
+      <text class="q" data-from="1" x="165" y="225"><tspan x="165">builds and maintains</tspan><tspan x="165" dy="20">infrastructure for</tspan><tspan x="165" dy="20">data applications</tspan></text>
+      <text class="q" data-from="2" x="835" y="225"><tspan x="835">uses data to answer</tspan><tspan x="835" dy="20">questions and</tspan><tspan x="835" dy="20">solve problems</tspan></text>
+      <text class="q shared" data-from="3" x="370" y="205" style="font-size:14px"><tspan x="370">introduces</tspan><tspan x="370" dy="18">good</tspan><tspan x="370" dy="18">software</tspan><tspan x="370" dy="18">engineering</tspan><tspan x="370" dy="18">practices</tspan></text>
+      <text class="q shared" data-from="4" x="630" y="205" style="font-size:14px"><tspan x="630">brings an</tspan><tspan x="630" dy="18">analytical</tspan><tspan x="630" dy="18">and business-</tspan><tspan x="630" dy="18">outcomes</tspan><tspan x="630" dy="18">mindset</tspan></text>
+    </svg>
+  </div>
+  <p class="note caption" style="margin-top:1.4cqh"></p>
 </div><div class="refs"><span>read more</span><a href="https://www.getdbt.com/blog/what-is-analytics-engineering">what is analytics engineering</a></div></div></section>
 
 <!-- commonalities -->
