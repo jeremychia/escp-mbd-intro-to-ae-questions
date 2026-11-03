@@ -17,13 +17,14 @@
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/doc">doc blocks</a></div></div></section>
 
 <!-- documentation, shown -->
-<section class="slide card"><div class="sheet"><div class="pad">
-  <h2>context matters. add documentation!</h2>
+<section class="slide card docblock" data-steps="3" data-k="0"><div class="sheet"><div class="pad">
+  <h2>a doc block is written once and reused everywhere</h2>
   <div class="with-tree">
     <ul class="tree" data-on="docs,models"></ul>
     <div class="main">
-      <div class="code-pair">
-        <figure class="code"><figcaption><i></i><i></i><i></i><span>_dimensions__models.yml</span></figcaption>
+      <div class="pills" id="docblock-pills"></div>
+      <div class="code-pair" style="grid-template-columns:2fr 3.4cqw 1fr;margin-top:2cqh">
+        <figure class="code sm"><figcaption><i></i><i></i><i></i><span>_dimensions__models.yml</span></figcaption>
 <pre><span class="ck">models</span><span class="cp">:</span>
   <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> dim_students
     <span class="ck">description</span><span class="cp">: |</span>
@@ -34,13 +35,14 @@
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_id
         <span class="ck">description</span><span class="cp">:</span> <span class="cs">"ESCP student number, given once at admission"</span>
       <span class="cp">-</span> <span class="ck">name</span><span class="cp">:</span> student_name
-        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"</span><mark>{{ doc('student_name') }}</mark><span class="cs">"</span></pre></figure>
+        <span class="ck">description</span><span class="cp">:</span> <span class="cs">"</span><mark class="swap" data-at="2" data-to="First name, last name of student">{{ doc('student_name') }}</mark><span class="cs">"</span></pre></figure>
         <div class="code-link" aria-hidden="true">→</div>
-        <figure class="code"><figcaption><i></i><i></i><i></i><span>student_name.md</span></figcaption>
+        <figure class="code sm doc-source"><figcaption><i></i><i></i><i></i><span>student_name.md</span></figcaption>
 <pre><mark>{% docs student_name %}</mark>
 First name, last name of student
 <span class="cp">{% enddocs %}</span></pre></figure>
       </div>
+      <p class="note" id="docblock-caption" style="margin-top:2cqh"></p>
     </div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/reference/dbt-jinja-functions/doc">doc blocks</a><a href="https://docs.getdbt.com/reference/resource-properties/description">description</a></div></div></section>
@@ -112,3 +114,24 @@ First name, last name of student
     <div class="panel head"><h3>column naming</h3><div><ul class="dots"><li>booleans start with <code>is_</code> or <code>has_</code></li><li>timestamps end with <code>_at</code> or <code>_date</code></li></ul></div></div>
   </div>
 </div><div class="refs"><span>read more</span><a href="https://docs.getdbt.com/best-practices/how-we-style/0-how-we-style-our-dbt-projects">style guide</a><a href="https://docs.getdbt.com/reference/resource-properties/data-tests">primary key tests</a></div></div></section>
+
+<script>
+// stepped slide: dbt replaces doc() with the text of the doc block it names
+const docSlide = document.querySelector('.docblock');
+const DOC_STEPS = [
+  {pill:'the YAML I write', caption:'use → to see what dbt does with doc().'},
+  {pill:'the doc block', caption:'the description lives once, in a doc block named student_name.'},
+  {pill:'what dbt writes', caption:'dbt replaces doc() with the block\'s text. every column that calls it gets the same description.'},
+];
+document.getElementById('docblock-pills').innerHTML = DOC_STEPS.map((step, index) => `<button data-k="${index}">${step.pill}</button>`).join('');
+const docSwaps = [...docSlide.querySelectorAll('.swap')];
+docSwaps.forEach(swap => swap.dataset.from = swap.textContent);
+function setDocBlock(k){
+  docSlide.dataset.k = k;
+  docSlide.querySelectorAll('.pills button').forEach(button => button.classList.toggle('on', +button.dataset.k === k));
+  document.getElementById('docblock-caption').textContent = DOC_STEPS[k].caption;
+  docSwaps.forEach(swap => retype(swap, k >= +swap.dataset.at ? swap.dataset.to : swap.dataset.from));
+}
+docSlide.querySelectorAll('.pills button').forEach(button => button.onclick = () => setDocBlock(+button.dataset.k));
+docSlide.step = setDocBlock;
+</script>
