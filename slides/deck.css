@@ -108,6 +108,9 @@ ol.nums li::marker{color:var(--accent);font-weight:700}
 .tree li{font-size:inherit;padding:.4cqh .6cqw;border-radius:.4cqw;color:var(--muted);border:.12cqw solid transparent;white-space:nowrap}
 .tree li.dir::before{content:"▪ ";color:var(--navy)}
 .tree li.file::before{content:"· ";color:var(--muted)}
+.with-tree:has(.tree.compact){grid-template-columns:auto 1fr}
+.tree.compact{font-size:1.3cqw;gap:.8cqh}
+.tree.compact li{padding:.7cqh 1cqw}
 .tree li.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
 .main{min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;align-content:center}
 
