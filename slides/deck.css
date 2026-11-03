@@ -147,8 +147,8 @@ ol.nums li::marker{color:var(--accent);font-weight:700}
 .code mark{background:var(--lemon);color:var(--navy);border-radius:.3cqw;padding:0 .2cqw;font-weight:700}
 .code mark.m2{background:var(--s3-soft)}
 /* dbt rewrites the model in place: a caret while it types, then a short lemon flash on the new text */
-.compile .swap.typing{box-shadow:.18cqw 0 0 var(--lemon)}
-.compile .swap.flash{animation:flash 1.2s ease-out}
+.swap.typing{box-shadow:.18cqw 0 0 var(--lemon)}
+.swap.flash{animation:flash 1.2s ease-out}
 @keyframes flash{from{background:var(--lemon);color:var(--navy)}}
 /* tests show as dashed blanks until the reveal step */
 .code .blank{border-radius:.3cqw;transition:background .3s,color .3s}
@@ -294,6 +294,13 @@ ul.linked li{display:flex;align-items:baseline;justify-content:space-between;gap
 
 /* nav */
 nav::before{content:"";position:absolute;left:0;top:0;height:3px;width:var(--progress,0%);background:var(--now,var(--lavender));transition:width .4s ease}
+/* doc block: the source lights up, then its text flows back into the YAML */
+.docblock .code-link{transition:transform .4s ease,opacity .3s}
+.docblock[data-k="0"] .code-link{opacity:.3}
+.docblock[data-k="2"] .code-link{transform:rotate(180deg)}
+.docblock .doc-source{transition:box-shadow .3s}
+.docblock:not([data-k="0"]) .doc-source{box-shadow:0 0 0 .3cqw var(--lemon),0 .5cqw 1.8cqw rgba(35,55,89,.22)}
+
 nav{position:fixed;left:0;right:0;bottom:0;height:44px;display:flex;align-items:center;justify-content:center;gap:18px;color:#c9d3e3;font-size:14px;background:#0f1828}
 nav button{background:none;border:1px solid #3a4a68;color:inherit;border-radius:999px;padding:4px 14px;font:inherit;cursor:pointer}
 nav button:hover{background:#1f2d48}
