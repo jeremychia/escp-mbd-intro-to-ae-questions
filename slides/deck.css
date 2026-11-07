@@ -338,6 +338,7 @@ nav button:hover{background:#1f2d48}
   nav{display:none}
   .stage{display:block;height:auto;padding:0}
   .chat .msg.later{display:grid} .chat .sticker.later{visibility:visible}
+  .stepped .later{opacity:1 !important;transform:none !important}
   .anim,.sticker,.vline,.bars .bar,.stack span{animation:none !important}
   .slide{display:block !important;width:16in;height:9in;page-break-after:always;border-radius:0;box-shadow:none}
 }

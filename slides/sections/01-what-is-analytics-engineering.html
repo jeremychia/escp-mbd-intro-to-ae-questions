@@ -1,9 +1,11 @@
 <style>
-.venn circle{fill:#c7d5eb;fill-opacity:.55;stroke:#233759;stroke-width:1.5;mix-blend-mode:multiply;transition:fill-opacity .4s}
+.venn circle{fill:#c7d5eb;fill-opacity:.55;stroke:#233759;stroke-width:1.5;mix-blend-mode:multiply}
+.stepped .venn circle{transition:fill-opacity .4s}
 .venn circle.ae{fill:#ceceff;fill-opacity:.8;stroke:#3b2282;stroke-width:3}
 .venn circle.focus{fill-opacity:.95}
 .venn circle.dim{opacity:1;fill-opacity:.15}
 .venn .lens{fill:var(--lemon)}
+.venn .lens.dim{opacity:0}
 .venn .node{transform-box:fill-box;transform-origin:center}
 .venn .node.pulse{animation:pulse .6s ease-out}
 .venn .role{font:700 22px Inter,sans-serif;fill:#233759;text-anchor:middle}
@@ -135,9 +137,9 @@
     <button data-caption="what each role brings. use → to step through the three roles.">overview</button>
     <button data-caption="data engineers build and maintain the infrastructure that data applications run on.">data engineers</button>
     <button data-caption="data analysts use data to answer questions and solve problems.">data analysts</button>
-    <button data-caption="from data engineering, analytics engineers bring good software engineering practices.">software practices</button>
-    <button data-caption="from analysis, analytics engineers bring an analytical mindset focused on business outcomes.">business mindset</button>
-    <button data-caption="together, these two make analytics engineers the bridge between data engineers and analysts.">analytics engineers</button>
+    <button data-caption="with data engineers, analytics engineers share good software engineering practices.">software practices</button>
+    <button data-caption="with data analysts, they share an analytical mindset focused on business outcomes.">business mindset</button>
+    <button data-caption="sharing one side with each role makes analytics engineers the bridge between them.">analytics engineers</button>
   </div>
   <div class="fill" style="margin-top:2cqh">
     <svg class="venn" viewBox="0 0 1000 430" role="img" aria-label="Venn diagram: data engineers build and maintain infrastructure; analytics engineers share software engineering practices with data engineers and an analytical, business-outcomes mindset with data analysts; data analysts use data to answer questions" style="width:100%;height:100%">
