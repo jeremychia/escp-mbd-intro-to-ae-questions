@@ -8,6 +8,35 @@
   <img src="assets/escp.png" alt="ESCP Business School" style="position:absolute;left:3.6cqw;bottom:5cqh;height:6cqh;filter:brightness(0) invert(1)">
 </section>
 
+<!-- dependency meme -->
+<style>
+.dependency{grid-template-columns:auto 1fr;grid-template-rows:minmax(0,1fr);align-items:center;gap:4cqw}
+.dependency .comic{position:relative;height:100%;aspect-ratio:770/978}
+.dependency .comic img{width:100%;height:100%}
+.dependency .ring{position:absolute;left:50.6%;top:85.4%;width:7%;height:8%;border:.3cqw solid var(--peach);border-radius:50%;transform:translate(-50%,-50%)}
+.slide.enter .dependency .ring{animation:ring 1.6s ease-out .9s infinite}
+@keyframes ring{0%{transform:translate(-50%,-50%) scale(.8);opacity:1}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+@media (max-width:700px){.dependency{grid-template-columns:1fr}.dependency .comic{height:auto;width:100%}.dependency .comic img{height:auto;display:block}.dependency .sticker{position:absolute;margin:0;font-size:14px !important}}
+</style>
+<section class="slide card"><div class="sheet"><div class="pad">
+  <h2>everything rests on one small brick: the data foundations</h2>
+  <div class="cols body dependency">
+    <div class="comic">
+      <img class="shot" src="assets/xkcd-dependency.png" alt="xkcd comic: a tall tower of blocks labelled all modern digital infrastructure rests on one thin brick near the bottom, labelled a project some random person in Nebraska has been thanklessly maintaining since 2003. a sticker on the thin brick reads data foundations">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="sticker" style="left:64%;top:78%;background:var(--lemon);font-size:1.6cqw;--rot:-6deg">data<br>foundations</div>
+    </div>
+    <div style="display:grid;gap:3cqh">
+      <div class="lead" style="display:grid;gap:3cqh">
+        <p>dashboards, AI models and business decisions sit at the top.</p>
+        <p>they all rest on <b>data foundations</b>: clean, tested and documented models.</p>
+        <p>nobody notices that brick until it breaks. analytics engineers keep it standing.</p>
+      </div>
+      <p class="note">comic: <a href="https://xkcd.com/2347/">xkcd 2347, “Dependency”</a> by Randall Munroe, <a href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>. sticker added.</p>
+    </div>
+  </div>
+</div></div></section>
+
 <!-- AEs obsess over these questions -->
 <section id="aes-questions" class="slide card"><div class="sheet"><div class="pad">
   <h2>analytics engineers obsess over these questions</h2>
