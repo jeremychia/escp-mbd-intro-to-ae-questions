@@ -4,14 +4,15 @@ The deck for the Introduction to Analytics Engineering session. It is published 
 
 ## build and present
 
-Run these from the repo root.
+Everything the deck needs, fonts included, is in this folder, so it builds and runs without internet. Only Python 3 is needed.
 
-- [ ] Run `python3 slides/build.py`.
-- [ ] Serve the built deck with `python3 -m http.server 8000 --directory slides/dist`. Opening `index.html` straight from disk can leave the photos blank.
-- [ ] Open http://localhost:8000 in a browser. It works offline.
+- [ ] From the repo root, run `python3 slides/build.py --serve`. It builds the deck and serves it.
+- [ ] Open http://localhost:8000 in a browser. Opening `dist/index.html` straight from disk can leave the photos blank.
 - [ ] Use → and ← to move through the slides, or add `#12` to the URL to jump to slide 12. On a stepped slide, → steps through it first.
-- [ ] After each edit, run the build again and reload the page. The server can stay running.
+- [ ] After each edit, run `python3 slides/build.py` in a second terminal and reload the page. The server can stay running.
 - [ ] Stop the server with Ctrl+C when you're done.
+
+Links to outside pages, such as the dbt docs, still need internet.
 
 ## where things live
 
@@ -26,6 +27,8 @@ Run these from the repo root.
 **Page frame:** `shell.html` holds the `<head>` and the nav bar.
 
 **Images:** `assets/`.
+
+**Fonts:** `assets/fonts/` holds the Latin character sets of Inter and Fraunces, with their licences. `deck.css` loads them at the top.
 
 ## edit
 
