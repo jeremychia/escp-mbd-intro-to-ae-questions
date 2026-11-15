@@ -206,15 +206,28 @@
 </div></div></section>
 
 <!-- tools named in the ads -->
-<section class="slide card"><div class="sheet"><div class="pad">
+<style>
+.stepped .tool-row{transform:translateY(var(--grouped));transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .35s}
+.tools[data-k="0"] .tool-row{transform:translateY(var(--ranked))}
+.tools .group-head{font:700 14px Inter,sans-serif;fill:var(--violet);letter-spacing:.06em;dominant-baseline:middle}
+@media print{.tools .group-head{display:none}}
+</style>
+<section class="slide card stepped tools" data-k="0"><div class="sheet"><div class="pad">
   <h2>SQL is in almost every ad, and dbt is in six of ten</h2>
   <p class="sub">share of 1,128 ads that name each tool or practice</p>
-  <div class="cols body chart-cols">
-    <svg class="bars" id="tool-bars" role="img" aria-label="bar chart of tools named in job ads: SQL 95%, Python 64%, dbt 60%, Power BI 40%, Snowflake 37%, version control 37%, BigQuery 28%, Tableau 28%, CI/CD 27%, semantic layer 24%, Looker 24%, Airflow 23%, Databricks 23%" style="width:100%;height:100%"></svg>
-    <div style="display:grid;gap:2cqh">
-      <div class="panel" style="background:var(--lavender-soft)"><p style="margin:0">SQL is the one skill almost every ad expects. dbt, which section 04 covers, is the third most named.</p></div>
-      <div class="panel"><p style="margin:0">no single warehouse or dashboard tool dominates. Power BI leads the dashboard tools at 40%.</p></div>
-    </div>
+  <div class="pills" style="margin-top:2cqh">
+    <button data-caption="SQL is the one skill almost every ad expects. dbt, which section 04 covers, is the third most named. use → to group the tools by the job they do.">ranked</button>
+    <button data-caption="the same tools, grouped by the job they do.">grouped</button>
+    <button data-caption="SQL and Python are the two languages. SQL is in 95% of ads, and Python is in 64%.">languages</button>
+    <button data-caption="dbt and the semantic layer turn raw tables into models and shared metrics.">transformation</button>
+    <button data-caption="no single warehouse dominates. Snowflake leads at 37%, ahead of BigQuery and Databricks.">warehouses</button>
+    <button data-caption="no single dashboard tool dominates either. Power BI leads the dashboard tools at 40%.">dashboards</button>
+    <button data-caption="version control and CI/CD bring software engineering practices to analytics code.">engineering practices</button>
+    <button data-caption="Airflow runs the jobs on a schedule. 23% of ads name it.">orchestration</button>
+  </div>
+  <div class="cols body chart-cols" style="margin-top:2cqh">
+    <svg class="bars" id="tool-bars" role="img" aria-label="bar chart of tools named in job ads, grouped by job. languages: SQL 95%, Python 64%. transformation: dbt 60%, semantic layer 24%. warehouses: Snowflake 37%, BigQuery 28%, Databricks 23%. dashboards: Power BI 40%, Tableau 28%, Looker 24%. engineering practices: version control 37%, CI/CD 27%. orchestration: Airflow 23%" style="width:100%;height:100%"></svg>
+    <div class="panel" style="background:var(--lavender-soft)"><p class="caption" style="margin:0;font-size:1.6cqw"></p></div>
   </div>
   <p class="note">source: <a href="https://github.com/jeremychia/analytics-engineers-job-descriptions">analytics-engineers-job-descriptions</a></p>
 </div></div></section>
@@ -238,7 +251,31 @@ drawBars(document.getElementById('theme-bars'), [
   ['architecture and platform strategy', 42], ['end-to-end data ownership', 36], ['self-service and data literacy', 35, 'on'],
   ['AI and agentic workflows', 33], ['mentoring and leadership', 16], ['security, privacy and risk', 12, 'on'], ['vendor and tool evaluation', 3],
 ]);
-drawBars(document.getElementById('tool-bars'), [
+// tools named in the ads: ranked by share on step 0, then moved into one group per job, each group lit on its own step
+function drawToolGroups(svg, groups, ranked){
+  const width = 800, rowHeight = 28, headHeight = 26, labelWidth = 290, barStart = labelWidth + 12, barSpace = width - barStart - 56;
+  const height = groups.length * headHeight + ranked.length * rowHeight, rankedTop = (height - ranked.length * rowHeight) / 2;
+  const groupedMiddle = {}, heads = [];
+  let top = 0;
+  groups.forEach(([group, tools], index) => {
+    heads.push(`<text class="group-head" data-in="1 ${index + 2}" data-from="1" x="${barStart}" y="${top + headHeight / 2}">${group}</text>`);
+    top += headHeight;
+    tools.forEach(tool => { groupedMiddle[tool] = top + rowHeight / 2; top += rowHeight; });
+  });
+  const stepOf = Object.fromEntries(groups.flatMap(([, tools], index) => tools.map(tool => [tool, index + 2])));
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.innerHTML = heads.join('') + ranked.map(([label, share, tone = ''], index) => {
+    const length = barSpace * share / 100;
+    return `<g class="tool-row" data-in="1 ${stepOf[label]}" style="--ranked:${rankedTop + index * rowHeight + rowHeight / 2}px;--grouped:${groupedMiddle[label]}px">`
+      + `<text class="lbl" x="${labelWidth}" y="0">${label}</text>`
+      + `<rect class="bar ${tone}" style="--bar:${index}" x="${barStart}" y="-10" width="${length}" height="20" rx="4"/>`
+      + `<text class="val ${tone}" x="${barStart + length + 8}" y="0">${share}%</text></g>`;
+  }).join('');
+}
+drawToolGroups(document.getElementById('tool-bars'), [
+  ['languages', ['SQL', 'Python']], ['transformation', ['dbt', 'semantic layer']], ['warehouses', ['Snowflake', 'BigQuery', 'Databricks']],
+  ['dashboards', ['Power BI', 'Tableau', 'Looker']], ['engineering practices', ['version control (Git)', 'CI/CD']], ['orchestration', ['Airflow']],
+], [
   ['SQL', 95, 'on'], ['Python', 64], ['dbt', 60, 'on'], ['Power BI', 40], ['Snowflake', 37], ['version control (Git)', 37], ['BigQuery', 28],
   ['Tableau', 28], ['CI/CD', 27], ['semantic layer', 24], ['Looker', 24], ['Airflow', 23], ['Databricks', 23],
 ]);
