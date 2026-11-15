@@ -6,8 +6,8 @@ The deck for the Introduction to Analytics Engineering session. It is published 
 
 Everything the deck needs, fonts included, is in this folder, so it builds and runs without internet. Only Python 3 is needed.
 
-- [ ] From the repo root, run `python3 slides/build.py --serve`. It builds the deck and serves it.
-- [ ] Open http://localhost:8000 in a browser. Opening `dist/index.html` straight from disk can leave the photos blank.
+- [ ] From the repo root, run `./run.sh`. It builds the deck, serves it and opens http://localhost:8000 in your browser. It runs `python3 slides/build.py --serve`, which also works on its own.
+- [ ] Use http://localhost:8000 rather than the file. Opening `dist/index.html` straight from disk can leave the photos blank.
 - [ ] Use → and ← to move through the slides, or add `#12` to the URL to jump to slide 12. On a stepped slide, → steps through it first.
 - [ ] After each edit, run `python3 slides/build.py` in a second terminal and reload the page. The server can stay running.
 - [ ] Stop the server with Ctrl+C when you're done.
